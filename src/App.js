@@ -9,6 +9,7 @@ import background from "./main/videos/mainvideo.mp4";
 import "./App.css";
 
 function App() {
+  //난 머지안됨?
   return (
     <div className="mainbody">
       <div className="mainvideo">
