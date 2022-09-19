@@ -10,6 +10,7 @@ import "./App.css";
 
 function App() {
   // 김찬진 왔다감
+  // 영윤이도 왔다감
   return (
     <div className="mainbody">
       <div className="mainvideo">
