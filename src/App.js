@@ -13,6 +13,7 @@ function App() {
   // 영윤이도 왔다감 이제는 집에감
   // 김찬진 두번왔다감
   // 영윤이도 왔다감
+  // 진짜 집에간다??
   return (
     <div className="mainbody">
       <div className="mainvideo">
