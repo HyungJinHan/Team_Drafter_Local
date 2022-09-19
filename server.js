@@ -1,3 +1,4 @@
+// 김찬진 여기에도 왔다감
 const express = require("express");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
@@ -23,10 +24,10 @@ app.get("/*", (req, res) => {
 app.use(cors(corsOptions));
 
 const db = mysql.createPool({
-  host: process.env.DB_HOST, 
+  host: process.env.DB_HOST,
   user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD, 
-  database: process.env.DB, 
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB,
 });
 
 app.post("/leaderlogin", (req, res) => {
@@ -35,8 +36,8 @@ app.post("/leaderlogin", (req, res) => {
 
   const sqlQuery =
     "SELECT LEADER_NAME, LEADER_PW, count(*) as 'cnt' FROM LEADER_TBL WHERE LEADER_NAME=? AND LEADER_PW=?;";
-    db.query(sqlQuery, [LEADER_NAME, LEADER_PW], (err, result) => {
-    res.send(result); 
+  db.query(sqlQuery, [LEADER_NAME, LEADER_PW], (err, result) => {
+    res.send(result);
   });
 });
 
@@ -46,14 +47,23 @@ app.post("/leaderjoin", (req, res) => {
   var LEADER_TEAM = req.body.LEADER_TEAM;
   var LEADER_GRADE = req.body.LEADER_GRADE;
   var LEADER_CLASS = req.body.LEADER_CLASS;
-  var LEADER_COIN = 10
+  var LEADER_COIN = 10;
 
-
-  const sqlQuery =
-    "INSERT INTO LEADER_TBL VALUES (?,?,?,?,?,?);";
-  db.query(sqlQuery, [LEADER_NAME, LEADER_PW, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN], (err, result) => {
-    res.send(result);
-  });
+  const sqlQuery = "INSERT INTO LEADER_TBL VALUES (?,?,?,?,?,?);";
+  db.query(
+    sqlQuery,
+    [
+      LEADER_NAME,
+      LEADER_PW,
+      LEADER_TEAM,
+      LEADER_GRADE,
+      LEADER_CLASS,
+      LEADER_COIN,
+    ],
+    (err, result) => {
+      res.send(result);
+    }
+  );
 });
 
 app.post("/memberlogin", (req, res) => {
@@ -63,7 +73,7 @@ app.post("/memberlogin", (req, res) => {
   const sqlQuery =
     "SELECT MEMBER_NAME, MEMBER_PW, count(*) as 'cnt' FROM MEMBER_TBL WHERE MEMBER_NAME=? AND MEMBER_PW=?;";
   db.query(sqlQuery, [MEMBER_NAME, MEMBER_PW], (err, result) => {
-    res.send(result); 
+    res.send(result);
   });
 });
 
@@ -73,19 +83,20 @@ app.post("/memberjoin", (req, res) => {
   var MEMBER_CLASS = req.body.MEMBER_CLASS;
   var MEMBER_GACHI = req.body.MEMBER_GACHI;
 
-  const sqlQuery =
-    "INSERT INTO MEMBER_TBL VALUES (?,?,?,?);";
-  db.query(sqlQuery, [MEMBER_NAME, MEMBER_PW, MEMBER_CLASS, MEMBER_GACHI], (err, result) => {
-    res.send(result);
-  });
+  const sqlQuery = "INSERT INTO MEMBER_TBL VALUES (?,?,?,?);";
+  db.query(
+    sqlQuery,
+    [MEMBER_NAME, MEMBER_PW, MEMBER_CLASS, MEMBER_GACHI],
+    (err, result) => {
+      res.send(result);
+    }
+  );
 });
-
 
 app.post("/class", (req, res) => {
   var LEADER_NAME = req.body.LEADER_NAME;
 
-  const sqlQuery = 
-    "SELECT LEADER_CLASS FROM LEADER_TBL WHERE LEADER_NAME = ?;";
+  const sqlQuery = "SELECT LEADER_CLASS FROM LEADER_TBL WHERE LEADER_NAME = ?;";
   db.query(sqlQuery, [LEADER_NAME], (err, result) => {
     res.send(result);
   });
@@ -93,17 +104,13 @@ app.post("/class", (req, res) => {
 
 app.post("/auction", (req, res) => {
   var LEADER_CLASS = req.body.LEADER_CLASS;
-  const sqlQuery = 
+  const sqlQuery =
     "SELECT LEADER_NAME, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN FROM LEADER_TBL";
   db.query(sqlQuery, [LEADER_CLASS], (err, result) => {
     res.send(result);
   });
 });
 
-
 const listener = app.listen(process.env.PORT || 8008, () => {
-  console.log('App is listening on port ' + listener)
-})
-
-
-
+  console.log("App is listening on port " + listener);
+});
