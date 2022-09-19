@@ -1,0 +1,8 @@
+.auction_body{
+    display: flex;
+    justify-content: space-between;
+}
+.auction_item{
+    background-color: rgba(255, 255, 255, 0.226);
+    margin: 15px;
+}

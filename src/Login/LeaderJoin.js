@@ -45,20 +45,20 @@ const LeaderJoin = () => {
     }
 
     axios
-      .post("https://teamdrafter.herokuapp.com/leaderjoin", {
-        leader_name: nameRef.current.value,
-        leader_pw: pwRef.current.value,
-        leader_hope: hopeRef.current.value,
-        leader_grade: gradeRef.current.value,
-        leader_class: classRef.current.value,
+      .post("http://localhost:8008/leaderjoin", {
+        LEADER_NAME: nameRef.current.value,
+        LEADER_PW: pwRef.current.value,
+        LEADER_TEAM: hopeRef.current.value,
+        LEADER_GRADE: gradeRef.current.value,
+        LEADER_CLASS: classRef.current.value,
       })
       .then((res) => {
         console.log("handleMember =>", res);
         if (res.data.affectedRows === 1) {
           alert("회원가입 성공!!!");
+          navigate("/leaderlogin");
         } else {
           alert("회원가입 실패");
-          navigate("/leaderlogin");
         }
       })
       .catch((e) => {
@@ -135,9 +135,9 @@ const LeaderJoin = () => {
               <td>
                 <select ref={gradeRef}>
                   <option value="">등급을 선택하세요</option>
-                  <option value="a">A</option>
-                  <option value="b">B</option>
-                  <option value="c">C</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
                 </select>
               </td>
             </tr>

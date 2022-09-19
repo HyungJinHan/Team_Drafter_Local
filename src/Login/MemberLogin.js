@@ -21,9 +21,9 @@ const MemberLogin = () => {
     }
 
     axios
-      .post("https://teamdrafter.herokuapp.com/memberlogin", {
-        member_name: nameRef.current.value,
-        member_pw: pwRef.current.value,
+      .post("http://localhost:8008/memberlogin", {
+        MEMBER_NAME: nameRef.current.value,
+        MEMBER_PW: pwRef.current.value,
       })
       .then((res) => {
         if (res.data[0].cnt === 1) {

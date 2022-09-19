@@ -1,0 +1,15 @@
+.app_body{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.mainvideo{
+    overflow: hidden;
+    margin: 0px auto;
+    position: relative;
+    height: 100vh;
+}
+video {
+    width: 100%;
+  }

@@ -2,9 +2,8 @@ const express = require("express");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const path = require('path');
+const path = require("path");
 require("dotenv").config();
-// test
 
 const app = express();
 
@@ -24,81 +23,87 @@ app.get("/*", (req, res) => {
 app.use(cors(corsOptions));
 
 const db = mysql.createPool({
-  host: process.env.DB_HOST,
+  host: process.env.DB_HOST, 
   user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB,
+  password: process.env.DB_PASSWORD, 
+  database: process.env.DB, 
 });
 
 app.post("/leaderlogin", (req, res) => {
-  var leader_name = req.body.leader_name;
-  var leader_pw = req.body.leader_pw;
+  var LEADER_NAME = req.body.LEADER_NAME;
+  var LEADER_PW = req.body.LEADER_PW;
 
   const sqlQuery =
-    "select leader_name, leader_pw, count(*) as 'cnt' from leader_tbl where leader_name = ? and leader_pw = ?;";
-  db.query(sqlQuery, [leader_name, leader_pw], (err, result) => {
-    res.send(result);
+    "SELECT LEADER_NAME, LEADER_PW, count(*) as 'cnt' FROM LEADER_TBL WHERE LEADER_NAME=? AND LEADER_PW=?;";
+    db.query(sqlQuery, [LEADER_NAME, LEADER_PW], (err, result) => {
+    res.send(result); 
   });
 });
 
 app.post("/leaderjoin", (req, res) => {
-  var leader_name = req.body.leader_name;
-  var leader_pw = req.body.leader_pw;
-  var leader_hope = req.body.leader_hope;
-  var leader_grade = req.body.leader_grade;
-  var leader_class = req.body.leader_class;
+  var LEADER_NAME = req.body.LEADER_NAME;
+  var LEADER_PW = req.body.LEADER_PW;
+  var LEADER_TEAM = req.body.LEADER_TEAM;
+  var LEADER_GRADE = req.body.LEADER_GRADE;
+  var LEADER_CLASS = req.body.LEADER_CLASS;
+  var LEADER_COIN = 10
+
 
   const sqlQuery =
-    "insert into leader_tbl values (?,?,?,?,?);";
-  db.query(sqlQuery, [leader_name, leader_pw, leader_hope, leader_grade, leader_class], (err, result) => {
+    "INSERT INTO LEADER_TBL VALUES (?,?,?,?,?,?);";
+  db.query(sqlQuery, [LEADER_NAME, LEADER_PW, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN], (err, result) => {
     res.send(result);
   });
 });
 
 app.post("/memberlogin", (req, res) => {
-  var member_name = req.body.member_name;
-  var member_pw = req.body.member_pw;
+  var MEMBER_NAME = req.body.MEMBER_NAME;
+  var MEMBER_PW = req.body.MEMBER_PW;
 
   const sqlQuery =
-    "select member_name, member_pw, count(*) as 'cnt' from member_tbl where member_name=? and member_pw=?;";
-  db.query(sqlQuery, [member_name, member_pw], (err, result) => {
-    res.send(result);
+    "SELECT MEMBER_NAME, MEMBER_PW, count(*) as 'cnt' FROM MEMBER_TBL WHERE MEMBER_NAME=? AND MEMBER_PW=?;";
+  db.query(sqlQuery, [MEMBER_NAME, MEMBER_PW], (err, result) => {
+    res.send(result); 
   });
 });
 
 app.post("/memberjoin", (req, res) => {
-  var member_name = req.body.member_name;
-  var member_pw = req.body.member_pw;
-  var member_gachi = req.body.member_gachi;
-  var member_class = req.body.member_class;
+  var MEMBER_NAME = req.body.MEMBER_NAME;
+  var MEMBER_PW = req.body.MEMBER_PW;
+  var MEMBER_CLASS = req.body.MEMBER_CLASS;
+  var MEMBER_GACHI = req.body.MEMBER_GACHI;
 
   const sqlQuery =
-    "insert into member_tbl values (?,?,?,?);";
-  db.query(sqlQuery, [member_name, member_pw, member_gachi, member_class], (err, result) => {
+    "INSERT INTO MEMBER_TBL VALUES (?,?,?,?);";
+  db.query(sqlQuery, [MEMBER_NAME, MEMBER_PW, MEMBER_CLASS, MEMBER_GACHI], (err, result) => {
     res.send(result);
   });
 });
 
 
 app.post("/class", (req, res) => {
-  var leader_name = req.body.leader_name;
+  var LEADER_NAME = req.body.LEADER_NAME;
 
-  const sqlQuery =
-    "SELECT leader_class FROM leader_tbl WHERE leader_name = ?;";
-  db.query(sqlQuery, [leader_name], (err, result) => {
+  const sqlQuery = 
+    "SELECT LEADER_CLASS FROM LEADER_TBL WHERE LEADER_NAME = ?;";
+  db.query(sqlQuery, [LEADER_NAME], (err, result) => {
     res.send(result);
   });
 });
 
 app.post("/auction", (req, res) => {
-  var leader_class = req.body.leader_class;
-  const sqlQuery =
-    "SELECT leader_name, leader_hope, leader_grade, leader_class FROM leader_tbl";
-  db.query(sqlQuery, [leader_class], (err, result) => {
+  var LEADER_CLASS = req.body.LEADER_CLASS;
+  const sqlQuery = 
+    "SELECT LEADER_NAME, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN FROM LEADER_TBL";
+  db.query(sqlQuery, [LEADER_CLASS], (err, result) => {
     res.send(result);
   });
 });
 
-const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log(`App is running on port` + listener);
-});
+
+const listener = app.listen(process.env.PORT || 8008, () => {
+  console.log('App is listening on port ' + listener)
+})
+
+
+

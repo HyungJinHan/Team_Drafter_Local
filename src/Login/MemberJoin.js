@@ -39,16 +39,19 @@ const MemberJoin = () => {
     }
 
     axios
-      .post("https://teamdrafter.herokuapp.com/memberjoin", {
-        member_name: nameRef.current.value,
-        member_pw: pwRef.current.value,
-        member_gachi: gachiRef.current.value,
-        member_class: classRef.current.value,
+      .post("http://localhost:8008/memberjoin", {
+        MEMBER_NAME: nameRef.current.value,
+        MEMBER_PW: pwRef.current.value,
+        MEMBER_CLASS: classRef.current.value,
+        MEMBER_GACHI: gachiRef.current.value,
       })
       .then((res) => {
-        if (res.data.affectedRows === 1);
-        else alert("아이디가 중복됩니다.");
-        navigate("/memberlogin");
+        if (res.data.affectedRows === 1) {
+          alert("회원가입 성공!!!");
+          navigate("/memberlogin");
+        } else {
+          alert("회원가입 실패");
+        }
       })
       .catch((e) => {
         console.error(e);

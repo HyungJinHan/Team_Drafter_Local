@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import "./LeaderLogin.css";
 
 const LeaderLogin = () => {
   const nameRef = useRef();
@@ -21,9 +22,9 @@ const LeaderLogin = () => {
     }
 
     axios
-      .post("https://teamdrafter.herokuapp.com/leaderlogin", {
-        leader_name: nameRef.current.value,
-        leader_pw: pwRef.current.value,
+      .post("http://localhost:8008/leaderlogin", {
+        LEADER_NAME: nameRef.current.value,
+        LEADER_PW: pwRef.current.value,
       })
       .then((res) => {
         if (res.data[0].cnt === 1) {
@@ -41,59 +42,88 @@ const LeaderLogin = () => {
 
   return (
     <>
-      <form>
-        <table align="center" border="1">
-          <tbody align="center">
-            <tr>
-              <td colSpan={2}>팀장 로그인</td>
-            </tr>
-            <tr>
-              <td>
-                이름입력
-              </td>
-              <td>
-                <input
-                  type="text"
-                  name="leadername"
-                  size="20"
-                  ref={nameRef}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                비밀번호
-              </td>
-              <td>
-                <input
-                  type="text"
-                  name="pw"
-                  size="20"
-                  ref={pwRef}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td colSpan={2}>
-                <input
-                  type="button"
-                  value="로그인"
-                  onClick={handleLogin}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link to="/leaderjoin">팀장 등록</Link>
-              </td>
-              <td>
-                <Link to="/memberlogin">팀원 로그인</Link>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
+      <div className="input_body">
+        <div className="inputBox">
+          <input 
+          type="text" 
+          name="leadername"
+          required="requireds" 
+          ref={nameRef}
+          autoComplete="off"
+          />
+          <span>ID input</span>
+          <i></i>
+        </div>
+        <div className="inputBox">
+          <input 
+          type="text" 
+          name="pw"
+          required="requireds" 
+          ref={pwRef}
+          autoComplete="off"
+          />
+          <span>PW input</span>
+          <i></i>
+        </div>
+        <input
+        type="button"
+        value="로그인"
+        onClick={handleLogin}
+      />
+      <Link to="/leaderjoin">팀장 등록</Link>
+      <Link to="/memberlogin">팀원 로그인</Link>
+      </div>
     </>
   );
 };
 export default LeaderLogin;
+
+
+{/* <form>
+<table align="center" border="1">
+  <tbody align="center">
+    <tr>
+      <td colSpan={2}>팀장 로그인</td>
+    </tr>
+    <tr>
+      <td>
+        이름입력
+      </td>
+      <td>
+        <input
+          type="text"
+          name="leadername"
+          size="20"
+          ref={nameRef}
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        비밀번호
+      </td>
+      <td>
+        <input
+          type="text"
+          name="pw"
+          size="20"
+          ref={pwRef}
+        />
+      </td>
+    </tr>
+    <tr>
+      <td colSpan={2}>
+        
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <Link to="/leaderjoin">팀장 등록</Link>
+      </td>
+      <td>
+        <Link to="/memberlogin">팀원 로그인</Link>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</form> */}
