@@ -59,13 +59,16 @@ INSERT INTO CLASS_TBL VALUES ('JS 특화 B', '김철기', '선영표', 'JavaScri
 INSERT INTO CLASS_TBL VALUES ('Spring 특화 A', '황해도', '한수진', 'Java, Python');
 INSERT INTO CLASS_TBL VALUES ('Spring 특화 B', '박병관', '김용현', 'Java, Python');
 INSERT INTO CLASS_TBL VALUES ('사물지능', '나예호', '홍성채', 'Python');
-INSERT INTO CLASS_TBL VALUES ('언어지능', 'NULL', '임현수', 'Python');
-INSERT INTO CLASS_TBL VALUES ('시각지능', 'NULL', '김태현', 'Python');
-INSERT INTO CLASS_TBL VALUES ('클라우드 A', 'NULL', '조자연', 'Python');
-INSERT INTO CLASS_TBL VALUES ('클라우드 B', 'NULL', '정정용', 'Python');
+INSERT INTO CLASS_TBL VALUES ('언어지능', '최석재', '임현수', 'Python');
+INSERT INTO CLASS_TBL VALUES ('시각지능', '박웅근', '김태현', 'Python');
+INSERT INTO CLASS_TBL VALUES ('클라우드 A', '손정현', '조자연', 'Python');
+INSERT INTO CLASS_TBL VALUES ('클라우드 B', '박태우', '정정용', 'Python');
 
-UPDATE CLASS_TBL SET CLASS_LANG = '언어 수정 후 올림' WHERE CLASS_NAME = '수정할 클래스';
-UPDATE CLASS_TBL SET CLASS_MAIN = '주강사 수정 후 올림' WHERE CLASS_NAME = '수정할 클래스';
+-- UPDATE 구문 실행 바람 ----------------------------
+UPDATE CLASS_TBL SET CLASS_MAIN = '최석재' WHERE CLASS_NAME = '언어지능';
+UPDATE CLASS_TBL SET CLASS_MAIN = '박웅근' WHERE CLASS_NAME = '시각지능';
+UPDATE CLASS_TBL SET CLASS_MAIN = '손정현' WHERE CLASS_NAME = '클라우드 A';
+UPDATE CLASS_TBL SET CLASS_MAIN = '박태우' WHERE CLASS_NAME = '클라우드 B';
 
 SELECT * FROM LEADER_TBL;
 SELECT * FROM MEMBER_TBL;
