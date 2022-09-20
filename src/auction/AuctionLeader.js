@@ -5,8 +5,6 @@ const AuctionLeader = () => {
 
   const [leaderList, setLeaderList] = useState([]);
 
-
-
   const leaderGetList = () => {
     axios
       .post("http://localhost:8008/auction")
@@ -26,8 +24,6 @@ const AuctionLeader = () => {
   useEffect(() => {
     leaderGetList();
   }, []);
-
-  console.log("classNAme2=>", leaders);
 
   return (
     <div>
