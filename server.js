@@ -46,9 +46,8 @@ app.post("/leaderjoin", (req, res) => {
   var LEADER_TEAM = req.body.LEADER_TEAM;
   var LEADER_GRADE = req.body.LEADER_GRADE;
   var LEADER_CLASS = req.body.LEADER_CLASS;
-  var LEADER_COIN = 10;
 
-  const sqlQuery = "INSERT INTO LEADER_TBL VALUES (?,?,?,?,?,?);";
+  const sqlQuery = "INSERT INTO LEADER_TBL VALUES (?,?,?,?,?);";
   db.query(
     sqlQuery,
     [
@@ -56,8 +55,7 @@ app.post("/leaderjoin", (req, res) => {
       LEADER_PW,
       LEADER_TEAM,
       LEADER_GRADE,
-      LEADER_CLASS,
-      LEADER_COIN,
+      LEADER_CLASS
     ],
     (err, result) => {
       res.send(result);
@@ -104,8 +102,25 @@ app.post("/class", (req, res) => {
 app.post("/auction", (req, res) => {
   var LEADER_CLASS = req.body.LEADER_CLASS;
   const sqlQuery =
-    "SELECT LEADER_NAME, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN FROM LEADER_TBL";
+    "SELECT LEADER_NAME, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN FROM LEADER_TBL;";
   db.query(sqlQuery, [LEADER_CLASS], (err, result) => {
+    res.send(result);
+  });
+});
+
+app.post("/classchoice", (req, res) => {
+  const sqlQuery =
+    "SELECT CLASS_NAME, CLASS_MAIN, CLASS_SUB, CLASS_LANG, CLASS_PATH FROM CLASS_TBL;";
+  db.query(sqlQuery, (err, result) => {
+    res.send(result);
+  });
+});
+
+app.post("/classarticle", (req, res) => {
+  var MEMBER_CLASS = req.body.MEMBER_CLASS;
+  const sqlQuery =
+    "SELECT MEMBER_NAME, MEMBER_CLASS, MEMBER_GACHI, MEMBER_CLASS FROM MEMBER_TBL WHERE MEMBER_CLASS=?;";
+  db.query(sqlQuery, [MEMBER_CLASS], (err, result) => {
     res.send(result);
   });
 });

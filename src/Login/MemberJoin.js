@@ -37,12 +37,42 @@ const MemberJoin = () => {
       classRef.current.focus();
       return false;
     }
+    if (classRef.current.value == "App 특화") {
+      var classValue = "App";
+    }
+    else if (classRef.current.value == "JS 특화 A") {
+      var classValue = "JSA";
+    }
+    else if (classRef.current.value == "JS 특화 B") {
+      var classValue = "JSB";
+    }
+    else if (classRef.current.value == "Spring 특화 A") {
+      var classValue = "SprA";
+    }
+    else if (classRef.current.value == "Spring 특화 B") {
+      var classValue = "SprB";
+    }
+    else if (classRef.current.value == "사물지능") {
+      var classValue = "SAMUL";
+    }
+    else if (classRef.current.value == "시각지능") {
+      var classValue = "SIGAK";
+    }
+    else if (classRef.current.value == "언어지능") {
+      var classValue = "UNUH";
+    }
+    else if (classRef.current.value == "클라우드 A") {
+      var classValue = "CLDA";
+    }
+    else if (classRef.current.value == "클라우드 B") {
+      var classValue = "CLDB";
+    }
 
     axios
       .post("http://localhost:8008/memberjoin", {
         MEMBER_NAME: nameRef.current.value,
         MEMBER_PW: pwRef.current.value,
-        MEMBER_CLASS: classRef.current.value,
+        MEMBER_CLASS: classValue,
         MEMBER_GACHI: gachiRef.current.value,
       })
       .then((res) => {
