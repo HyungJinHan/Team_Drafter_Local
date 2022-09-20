@@ -108,6 +108,13 @@ const MemberJoin = () => {
                   ref={nameRef}
                   placeholder="이름을 입력하세요"
                   defaultValue=""
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
                 />
               </td>
             </tr>
@@ -117,11 +124,18 @@ const MemberJoin = () => {
               </td>
               <td>
                 <input
-                  type="text"
+                  type="password"
                   name="pw"
                   ref={pwRef}
                   placeholder="비밀번호를 입력하세요"
                   defaultValue=""
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
                 />
               </td>
             </tr>
@@ -131,11 +145,18 @@ const MemberJoin = () => {
               </td>
               <td>
                 <input
-                  type="text"
+                  type="password"
                   name="pwch"
                   ref={pwchRef}
                   placeholder="비밀번호 확인"
                   defaultValue=""
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
                 />
               </td>
             </tr>
@@ -150,6 +171,13 @@ const MemberJoin = () => {
                   min={0}
                   max={10}
                   ref={gachiRef}
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
                 />
               </td>
             </tr>
@@ -158,7 +186,16 @@ const MemberJoin = () => {
                 반 선택
               </td>
               <td>
-                <select ref={classRef}>
+                <select
+                  ref={classRef}
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
+                >
                   <option value="">
                     반을 선택하세요
                   </option>
