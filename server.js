@@ -47,7 +47,7 @@ app.post("/leaderjoin", (req, res) => {
   var LEADER_GRADE = req.body.LEADER_GRADE;
   var LEADER_CLASS = req.body.LEADER_CLASS;
 
-  const sqlQuery = "INSERT INTO LEADER_TBL VALUES (?,?,?,?,?);";
+  const sqlQuery = "INSERT INTO LEADER_TBL VALUES (?,?,?,?,?,100);";
   db.query(
     sqlQuery,
     [
@@ -121,6 +121,15 @@ app.post("/classarticle", (req, res) => {
   const sqlQuery =
     "SELECT MEMBER_NAME, MEMBER_CLASS, MEMBER_GACHI, MEMBER_CLASS FROM MEMBER_TBL WHERE MEMBER_CLASS=?;";
   db.query(sqlQuery, [MEMBER_CLASS], (err, result) => {
+    res.send(result);
+  });
+});
+
+app.post("/mylist", (req, res) => {
+  var LEADER_NAME = req.body.LEADER_NAME;
+  const sqlQuery =
+    "SELECT LEADER_NAME, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN FROM LEADER_TBL WHERE LEADER_NAME=?;";
+  db.query(sqlQuery, [LEADER_NAME], (err, result) => {
     res.send(result);
   });
 });

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import AuctionMy from "./AuctionMy";
+import AuctionLeader from "./AuctionLeader";
+import "./AuctionArticle.css";
 
 const AuctionArticle = () => {
 
@@ -31,8 +34,11 @@ const AuctionArticle = () => {
     useEffect(() => {leaderGetList();}, []);
 
     return (
-    <div>
-      <div>
+    <div className="auctionArticleBody">
+      <div className="auctionArticlItem">
+        <AuctionLeader/>
+      </div>
+      <div className="auctionArticlItem">
         {articles?.map((atc) => (
           <table key={atc.MEMBER_NAME} border="1">
             <tbody align="center">
@@ -57,6 +63,9 @@ const AuctionArticle = () => {
             </tbody>
           </table>
         ))}
+      </div>
+      <div className="auctionArticlItem">
+        <AuctionMy />
       </div>
     </div>
     );

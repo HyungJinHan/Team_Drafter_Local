@@ -1,10 +1,9 @@
-.AuctionBody{
+.auctionArticleBody{
     display: flex;
     justify-content: space-between;
 }
-.AuctionItem{
+.auctionArticlItem{
     background-color: rgba(255, 255, 255, 0.226);
     margin: 15px;
     width: 33%;
-    text-decoration: none;
 }
