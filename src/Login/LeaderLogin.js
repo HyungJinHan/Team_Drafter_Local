@@ -28,7 +28,7 @@ const LeaderLogin = () => {
       })
       .then((res) => {
         if (res.data[0].cnt === 1) {
-          window.sessionStorage.setItem("name", nameRef.current.value);
+          window.sessionStorage.setItem("leaderName", nameRef.current.value);
           navigate("/");
         } else {
           alert("로그인 실패");
@@ -44,42 +44,38 @@ const LeaderLogin = () => {
     <>
       <div className="input_body">
         <div className="inputBox">
-          <input 
-          type="text" 
-          name="leadername"
-          required="requireds" 
-          ref={nameRef}
-          autoComplete="off"
+          <input
+            type="text"
+            name="leadername"
+            required="requireds"
+            ref={nameRef}
+            autoComplete="off"
           />
           <span>ID input</span>
           <i></i>
         </div>
         <div className="inputBox">
-          <input 
-          type="text" 
-          name="pw"
-          required="requireds" 
-          ref={pwRef}
-          autoComplete="off"
+          <input
+            type="text"
+            name="pw"
+            required="requireds"
+            ref={pwRef}
+            autoComplete="off"
           />
           <span>PW input</span>
           <i></i>
         </div>
-        <input
-        type="button"
-        value="로그인"
-        onClick={handleLogin}
-      />
-      <Link to="/leaderjoin">팀장 등록</Link>
-      <Link to="/memberlogin">팀원 로그인</Link>
+        <input type="button" value="로그인" onClick={handleLogin} />
+        <Link to="/leaderjoin">팀장 등록</Link>
+        <Link to="/memberlogin">팀원 로그인</Link>
       </div>
     </>
   );
 };
 export default LeaderLogin;
 
-
-{/* <form>
+{
+  /* <form>
 <table align="center" border="1">
   <tbody align="center">
     <tr>
@@ -126,4 +122,5 @@ export default LeaderLogin;
     </tr>
   </tbody>
 </table>
-</form> */}
+</form> */
+}

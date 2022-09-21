@@ -27,7 +27,7 @@ const MemberLogin = () => {
       })
       .then((res) => {
         if (res.data[0].cnt === 1) {
-          window.sessionStorage.setItem("name", nameRef.current.value);
+          window.sessionStorage.setItem("memberName", nameRef.current.value);
           navigate("/");
         } else {
           alert("로그인 실패");
@@ -48,38 +48,20 @@ const MemberLogin = () => {
               <td colSpan={2}>팀원 로그인</td>
             </tr>
             <tr>
+              <td>이름입력</td>
               <td>
-                이름입력
-              </td>
-              <td>
-                <input
-                  type="text"
-                  name="membername"
-                  size="20"
-                  ref={nameRef}
-                />
+                <input type="text" name="membername" size="20" ref={nameRef} />
               </td>
             </tr>
             <tr>
+              <td>비밀번호</td>
               <td>
-                비밀번호
-              </td>
-              <td>
-                <input
-                  type="text"
-                  name="pw"
-                  size="20"
-                  ref={pwRef}
-                />
+                <input type="text" name="pw" size="20" ref={pwRef} />
               </td>
             </tr>
             <tr>
               <td colSpan={2}>
-                <input
-                  type="button"
-                  value="로그인"
-                  onClick={handleLogin}
-                />
+                <input type="button" value="로그인" onClick={handleLogin} />
               </td>
             </tr>
             <tr>

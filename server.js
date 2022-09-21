@@ -110,6 +110,22 @@ app.post("/auction", (req, res) => {
   });
 });
 
+app.post("/leaderinfo", (req, res) => {
+  var leadername = req.body.leaderName;
+  const sqlQuery = "SELECT * FROM LEADER_TBL WHERE LEADER_NAME = ?";
+  db.query(sqlQuery, [leadername], (err, result) => {
+    res.send(result);
+  });
+});
+
+app.post("/memberinfo", (req, res) => {
+  var memberName = req.body.memberName;
+  const sqlQuery = "SELECT * FROM MEMBER_TBL WHERE LEADER_NAME = ?";
+  db.query(sqlQuery, [memberName], (err, result) => {
+    res.send(result);
+  });
+});
+
 const listener = app.listen(process.env.PORT || 8008, () => {
   console.log("App is listening on port " + listener);
 });
