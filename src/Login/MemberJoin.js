@@ -162,14 +162,14 @@ const MemberJoin = () => {
             </tr>
             <tr>
               <td>
-                자신의 예상 가치 (0 ~ 10)
+                자신의 예상 가치 (0 ~ 100)
               </td>
               <td>
                 <input
                   type='number'
                   name="gachi"
                   min={0}
-                  max={10}
+                  max={100}
                   ref={gachiRef}
                   onKeyPress={
                     (e) => {

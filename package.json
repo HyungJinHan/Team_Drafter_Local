@@ -35,7 +35,8 @@
     "secure-web-storage": "^1.0.2",
     "sweetalert2": "^11.4.33",
     "swiper": "^8.3.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zustand": "^4.1.1"
   },
   "scripts": {
     "start": "node server.js",

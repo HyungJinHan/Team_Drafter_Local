@@ -47,7 +47,7 @@ app.post("/leaderjoin", (req, res) => {
   var LEADER_GRADE = req.body.LEADER_GRADE;
   var LEADER_CLASS = req.body.LEADER_CLASS;
 
-  const sqlQuery = "INSERT INTO LEADER_TBL VALUES (?,?,?,?,?,100);";
+  const sqlQuery = "INSERT INTO LEADER_TBL VALUES (?, ?, ?, ?, ?, 100);";
   db.query(
     sqlQuery,
     [
@@ -55,7 +55,7 @@ app.post("/leaderjoin", (req, res) => {
       LEADER_PW,
       LEADER_TEAM,
       LEADER_GRADE,
-      LEADER_CLASS
+      LEADER_CLASS,
     ],
     (err, result) => {
       res.send(result);
@@ -108,11 +108,27 @@ app.post("/auction", (req, res) => {
   });
 });
 
+app.post("/leaderinfo", (req, res) => {
+  var leadername = req.body.leaderName;
+  const sqlQuery = "SELECT * FROM LEADER_TBL WHERE LEADER_NAME = ?";
+  db.query(sqlQuery, [leadername], (err, result) => {
+  res.send(result);
+  });
+});
+
 app.post("/classchoice", (req, res) => {
   const sqlQuery =
     "SELECT CLASS_NAME, CLASS_MAIN, CLASS_SUB, CLASS_LANG, CLASS_PATH FROM CLASS_TBL;";
   db.query(sqlQuery, (err, result) => {
     res.send(result);
+  });
+});
+
+app.post("/memberinfo", (req, res) => {
+  var memberName = req.body.memberName;
+  const sqlQuery = "SELECT * FROM MEMBER_TBL WHERE LEADER_NAME = ?";
+  db.query(sqlQuery, [memberName], (err, result) => {
+  res.send(result);
   });
 });
 

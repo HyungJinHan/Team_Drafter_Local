@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import useStore from "../store/Store";
 
 const AuctionLeader = () => {
-
   const [leaderList, setLeaderList] = useState([]);
-
   const leaderGetList = () => {
     axios
       .post("http://localhost:8008/auction")
@@ -16,7 +15,7 @@ const AuctionLeader = () => {
       })
       .catch((e) => {
         console.log(e);
-      })
+      });
   };
 
   const leaders = leaderList.leaderList;
@@ -32,9 +31,7 @@ const AuctionLeader = () => {
           <table key={ld.LEADER_NAME} border="1">
             <tbody align="center">
               <tr>
-                <td width={100}>
-                  {ld.LEADER_NAME}
-                </td>
+                <td width={100}>{ld.LEADER_NAME}</td>
                 <td width={100}>
                   {ld.LEADER_TEAM}
                   &nbsp;팀
@@ -57,8 +54,7 @@ const AuctionLeader = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default AuctionLeader;
-
