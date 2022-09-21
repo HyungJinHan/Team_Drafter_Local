@@ -37,12 +37,42 @@ const MemberJoin = () => {
       classRef.current.focus();
       return false;
     }
+    if (classRef.current.value === "App 특화") {
+      var classValue = "App";
+    }
+    else if (classRef.current.value === "JS 특화 A") {
+      classValue = "JSA";
+    }
+    else if (classRef.current.value === "JS 특화 B") {
+      classValue = "JSB";
+    }
+    else if (classRef.current.value === "Spring 특화 A") {
+      classValue = "SprA";
+    }
+    else if (classRef.current.value === "Spring 특화 B") {
+      classValue = "SprB";
+    }
+    else if (classRef.current.value === "사물지능") {
+      classValue = "SAMUL";
+    }
+    else if (classRef.current.value === "시각지능") {
+      classValue = "SIGAK";
+    }
+    else if (classRef.current.value === "언어지능") {
+      classValue = "UNUH";
+    }
+    else if (classRef.current.value === "클라우드 A") {
+      classValue = "CLDA";
+    }
+    else if (classRef.current.value === "클라우드 B") {
+      classValue = "CLDB";
+    }
 
     axios
       .post("http://localhost:8008/memberjoin", {
         MEMBER_NAME: nameRef.current.value,
         MEMBER_PW: pwRef.current.value,
-        MEMBER_CLASS: classRef.current.value,
+        MEMBER_CLASS: classValue,
         MEMBER_GACHI: gachiRef.current.value,
       })
       .then((res) => {
@@ -78,6 +108,13 @@ const MemberJoin = () => {
                   ref={nameRef}
                   placeholder="이름을 입력하세요"
                   defaultValue=""
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
                 />
               </td>
             </tr>
@@ -87,11 +124,18 @@ const MemberJoin = () => {
               </td>
               <td>
                 <input
-                  type="text"
+                  type="password"
                   name="pw"
                   ref={pwRef}
                   placeholder="비밀번호를 입력하세요"
                   defaultValue=""
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
                 />
               </td>
             </tr>
@@ -101,25 +145,39 @@ const MemberJoin = () => {
               </td>
               <td>
                 <input
-                  type="text"
+                  type="password"
                   name="pwch"
                   ref={pwchRef}
                   placeholder="비밀번호 확인"
                   defaultValue=""
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
                 />
               </td>
             </tr>
             <tr>
               <td>
-                자신의 예상 가치 (0 ~ 10)
+                자신의 예상 가치 (0 ~ 100)
               </td>
               <td>
                 <input
                   type='number'
                   name="gachi"
                   min={0}
-                  max={10}
+                  max={100}
                   ref={gachiRef}
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
                 />
               </td>
             </tr>
@@ -128,7 +186,16 @@ const MemberJoin = () => {
                 반 선택
               </td>
               <td>
-                <select ref={classRef}>
+                <select
+                  ref={classRef}
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
+                >
                   <option value="">
                     반을 선택하세요
                   </option>

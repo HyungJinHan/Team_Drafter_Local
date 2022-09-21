@@ -83,6 +83,13 @@ const LeaderJoin = () => {
                   ref={nameRef}
                   placeholder="이름를 입력하세요"
                   defaultValue=""
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
                 />
               </td>
             </tr>
@@ -92,11 +99,18 @@ const LeaderJoin = () => {
               </td>
               <td>
                 <input
-                  type="text"
+                  type="password"
                   name="pw"
                   ref={pwRef}
                   placeholder="비밀번호를 입력하세요"
                   defaultValue=""
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
                 />
               </td>
             </tr>
@@ -106,11 +120,18 @@ const LeaderJoin = () => {
               </td>
               <td>
                 <input
-                  type="text"
+                  type="password"
                   name="pwch"
                   ref={pwchRef}
                   placeholder="비밀번호 확인"
                   defaultValue=""
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
                 />
               </td>
             </tr>
@@ -125,6 +146,13 @@ const LeaderJoin = () => {
                   ref={hopeRef}
                   placeholder="팀명를 입력하세요"
                   defaultValue=""
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
                 />
               </td>
             </tr>
@@ -133,7 +161,16 @@ const LeaderJoin = () => {
                 본인 등급
               </td>
               <td>
-                <select ref={gradeRef}>
+                <select
+                  ref={gradeRef}
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
+                >
                   <option value="">등급을 선택하세요</option>
                   <option value="A">A</option>
                   <option value="B">B</option>
@@ -146,7 +183,16 @@ const LeaderJoin = () => {
                 반 선택
               </td>
               <td>
-                <select ref={classRef}>
+                <select
+                  ref={classRef}
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleMember();
+                      }
+                    }
+                  }
+                >
                   <option value="">
                     반을 선택하세요
                   </option>

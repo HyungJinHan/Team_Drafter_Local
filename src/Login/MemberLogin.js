@@ -50,26 +50,71 @@ const MemberLogin = () => {
             <tr>
               <td>이름입력</td>
               <td>
-                <input type="text" name="membername" size="20" ref={nameRef} />
+                이름입력
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="membername"
+                  size="20"
+                  ref={nameRef}
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleLogin();
+                      }
+                    }
+                  }
+                />
               </td>
             </tr>
             <tr>
               <td>비밀번호</td>
               <td>
-                <input type="text" name="pw" size="20" ref={pwRef} />
+                비밀번호
+              </td>
+              <td>
+                <input
+                  type="password"
+                  name="pw"
+                  size="20"
+                  ref={pwRef}
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleLogin();
+                      }
+                    }
+                  }
+                />
               </td>
             </tr>
             <tr>
               <td colSpan={2}>
-                <input type="button" value="로그인" onClick={handleLogin} />
+                <input
+                  type="button"
+                  value="로그인"
+                  onClick={handleLogin}
+                  onKeyPress={
+                    (e) => {
+                      if (e.key === 'Enter') {
+                        handleLogin();
+                      }
+                    }
+                  }
+                />
               </td>
             </tr>
             <tr>
               <td>
-                <Link to="/memberjoin">팀원 등록</Link>
+                <Link to="/memberjoin">
+                  팀원 등록
+                </Link>
               </td>
               <td>
-                <Link to="/leaderlogin">팀장 로그인</Link>
+                <Link to="/leaderlogin">
+                  팀장 로그인
+                </Link>
               </td>
             </tr>
           </tbody>
