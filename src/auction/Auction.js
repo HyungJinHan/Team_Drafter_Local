@@ -2,46 +2,32 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import AuctionLeader from "./AuctionLeader";
 import AuctionClassSelect from "./AuctionClassSelect";
-import AuctionArticle from "./AuctionArticle";
+import AuctionMy from "./AuctionMy";
 import "./Auction.css";
 
 
 const Auction = () => {
 
   const location = useLocation();
-  const [classKey, setClassKey] = useState("")
 
-  const auctionPath = location.pathname + classKey;
+  const auctionPath = location.pathname;
   console.log("auctionPath =>", auctionPath);
   
-    return (
-      <>
-        <div className="auction_body">
-          <div className="auction_item">
-          <AuctionLeader/>
-          </div>
-          <div className="auction_item">
-          <AuctionClassSelect setClassKey={setClassKey} auctionPath={auctionPath} />
-          </div>
+  return (
+    <>
+      <div className="AuctionBody">
+        <div className="AuctionItem">
+        <AuctionLeader/>
         </div>
-      </>
-    )
-  
-  // else{
-  //   return(
-  //     <>
-  //       <div className="auction_body">
-  //         <div className="auction_item">
-  //         <AuctionLeader/>
-  //         </div>
-  //         <div className="auction_item">
-  //         <AuctionArticle classKey={classKey} setClassKey={setClassKey} />
-  //         </div>
-  //       </div>
-  //     </>
-  //   )
-  // }
-
+        <div className="AuctionItem">
+        <AuctionClassSelect />
+        </div>
+        <div className="AuctionItem">
+        <AuctionMy />
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default Auction;

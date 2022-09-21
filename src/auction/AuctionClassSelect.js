@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 const AuctionClassSelect = () => {
 
 
@@ -48,7 +49,7 @@ const AuctionClassSelect = () => {
                   &nbsp;언어
                 </td>
                 <td className="intoPlayer">
-                  <Link to={cl.CLASS_PATH} >선수입짱</Link>
+                  <Link to={cl.CLASS_PATH} ><p>입짱</p></Link>
                 </td>
               </tr>
             </tbody>

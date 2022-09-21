@@ -43,6 +43,36 @@ const LeaderJoin = () => {
       classRef.current.focus();
       return false;
     }
+    if (classRef.current.value === "App 특화") {
+      var classValue = "App";
+    }
+    else if (classRef.current.value === "JS 특화 A") {
+      classValue = "JSA";
+    }
+    else if (classRef.current.value === "JS 특화 B") {
+      classValue = "JSB";
+    }
+    else if (classRef.current.value === "Spring 특화 A") {
+      classValue = "SprA";
+    }
+    else if (classRef.current.value === "Spring 특화 B") {
+      classValue = "SprB";
+    }
+    else if (classRef.current.value === "사물지능") {
+      classValue = "SAMUL";
+    }
+    else if (classRef.current.value === "시각지능") {
+      classValue = "SIGAK";
+    }
+    else if (classRef.current.value === "언어지능") {
+      classValue = "UNUH";
+    }
+    else if (classRef.current.value === "클라우드 A") {
+      classValue = "CLDA";
+    }
+    else if (classRef.current.value === "클라우드 B") {
+      classValue = "CLDB";
+    }
 
     axios
       .post("http://localhost:8008/leaderjoin", {

@@ -141,6 +141,15 @@ app.post("/classarticle", (req, res) => {
   });
 });
 
+app.post("/mylist", (req, res) => {
+  var LEADER_NAME = req.body.LEADER_NAME;
+  const sqlQuery =
+    "SELECT LEADER_NAME, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN FROM LEADER_TBL WHERE LEADER_NAME=?;";
+  db.query(sqlQuery, [LEADER_NAME], (err, result) => {
+    res.send(result);
+  });
+});
+
 const listener = app.listen(process.env.PORT || 8008, () => {
   console.log("App is listening on port " + listener);
 });

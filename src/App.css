@@ -1,10 +1,16 @@
-.app_body{
+*{
+    text-decoration: none;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+.appBody{
     position: absolute;
     width: 100%;
     left: 0;
     top: 0;
 }
-.mainvideo{
+.mainVideo{
     overflow: hidden;
     margin: 0px auto;
     position: relative;

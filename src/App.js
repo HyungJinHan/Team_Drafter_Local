@@ -12,12 +12,12 @@ import AuctionArticle from "./auction/AuctionArticle";
 function App() {
   //tq 욕함? ('-` ;;)
   return (
-    <div className="mainbody">
-      <div className="mainvideo">
+    <div className="mainBody">
+      <div className="mainVideo">
         <video loop autoPlay muted>
           <source src={background} type="video/mp4" />
         </video>
-        <div className="app_body">
+        <div className="appBody">
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/leaderlogin" element={<LeaderLogin />} />
