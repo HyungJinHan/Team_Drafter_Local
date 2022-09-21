@@ -108,11 +108,27 @@ app.post("/auction", (req, res) => {
   });
 });
 
+app.post("/leaderinfo", (req, res) => {
+  var leadername = req.body.leaderName;
+  const sqlQuery = "SELECT * FROM LEADER_TBL WHERE LEADER_NAME = ?";
+  db.query(sqlQuery, [leadername], (err, result) => {
+  res.send(result);
+  });
+});
+
 app.post("/classchoice", (req, res) => {
   const sqlQuery =
     "SELECT CLASS_NAME, CLASS_MAIN, CLASS_SUB, CLASS_LANG, CLASS_PATH FROM CLASS_TBL;";
   db.query(sqlQuery, (err, result) => {
     res.send(result);
+  });
+});
+
+app.post("/memberinfo", (req, res) => {
+  var memberName = req.body.memberName;
+  const sqlQuery = "SELECT * FROM MEMBER_TBL WHERE LEADER_NAME = ?";
+  db.query(sqlQuery, [memberName], (err, result) => {
+  res.send(result);
   });
 });
 
