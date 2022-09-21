@@ -47,7 +47,7 @@ app.post("/leaderjoin", (req, res) => {
   var LEADER_GRADE = req.body.LEADER_GRADE;
   var LEADER_CLASS = req.body.LEADER_CLASS;
 
-  const sqlQuery = "INSERT INTO LEADER_TBL VALUES (?,?,?,?,?);";
+  const sqlQuery = "INSERT INTO LEADER_TBL VALUES (?, ?, ?, ?, ?, 100);";
   db.query(
     sqlQuery,
     [
@@ -55,7 +55,7 @@ app.post("/leaderjoin", (req, res) => {
       LEADER_PW,
       LEADER_TEAM,
       LEADER_GRADE,
-      LEADER_CLASS
+      LEADER_CLASS,
     ],
     (err, result) => {
       res.send(result);
