@@ -54,16 +54,16 @@ ALTER TABLE TEAM_TBL ADD FOREIGN KEY (TEAM_LEADER) REFERENCES LEADER_TBL(LEADER_
 ALTER TABLE TEAM_TBL ADD FOREIGN KEY (TEAM_MEMBER) REFERENCES MEMBER_TBL(MEMBER_NAME) ON DELETE CASCADE;
 ALTER TABLE TEAM_TBL ADD FOREIGN KEY (TEAM_CLASS) REFERENCES CLASS_TBL(CLASS_NAME) ON DELETE CASCADE;
 
-INSERT INTO CLASS_TBL VALUES ('App 특화', '강성관', '박승현', 'Java, Python');
-INSERT INTO CLASS_TBL VALUES ('JS 특화 A', '조영태', '임승환', 'JavaScript, Python');
-INSERT INTO CLASS_TBL VALUES ('JS 특화 B', '김철기', '선영표', 'JavaScript, Python');
-INSERT INTO CLASS_TBL VALUES ('Spring 특화 A', '황해도', '한수진', 'Java, Python');
-INSERT INTO CLASS_TBL VALUES ('Spring 특화 B', '박병관', '김용현', 'Java, Python');
-INSERT INTO CLASS_TBL VALUES ('사물지능', '나예호', '홍성채', 'Python');
-INSERT INTO CLASS_TBL VALUES ('언어지능', '최석재', '임현수', 'Python');
-INSERT INTO CLASS_TBL VALUES ('시각지능', '박웅근', '김태현', 'Python');
-INSERT INTO CLASS_TBL VALUES ('클라우드 A', '손정현', '조자연', 'Python');
-INSERT INTO CLASS_TBL VALUES ('클라우드 B', '박태우', '정정용', 'Python');
+INSERT INTO CLASS_TBL VALUES ('App 특화', '강성관', '박승현', 'Java, Python', 'App');
+INSERT INTO CLASS_TBL VALUES ('JS 특화 A', '조영태', '임승환', 'JavaScript, Python', 'JSA');
+INSERT INTO CLASS_TBL VALUES ('JS 특화 B', '김철기', '선영표', 'JavaScript, Python', 'JSB');
+INSERT INTO CLASS_TBL VALUES ('Spring 특화 A', '황해도', '한수진', 'Java, Python', 'SprA');
+INSERT INTO CLASS_TBL VALUES ('Spring 특화 B', '박병관', '김용현', 'Java, Python', 'SprB');
+INSERT INTO CLASS_TBL VALUES ('사물지능', '나예호', '홍성채', 'Python', 'SAMUL');
+INSERT INTO CLASS_TBL VALUES ('언어지능', '최석재', '임현수', 'Python', 'UNUH');
+INSERT INTO CLASS_TBL VALUES ('시각지능', '박웅근', '김태현', 'Python', 'SIGAK');
+INSERT INTO CLASS_TBL VALUES ('클라우드 A', '손정현', '조자연', 'Python', 'CLDA');
+INSERT INTO CLASS_TBL VALUES ('클라우드 B', '박태우', '정정용', 'Python', 'CLDB');
 
 -- UPDATE 구문 실행 바람 ----------------------------
 UPDATE CLASS_TBL SET CLASS_MAIN = '최석재' WHERE CLASS_NAME = '언어지능';
