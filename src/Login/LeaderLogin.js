@@ -31,37 +31,10 @@ const LeaderLogin = () => {
       .then((res) => {
         if (res.data[0].cnt === 1) {
           window.sessionStorage.setItem("name", nameRef.current.value);
-          var SECRET_KEY = nameRef.current.value;
-
-          const secureStorage = new SecureStorage(sessionStorage, {
-            hash: function hash(key) {
-              key = CryptoJS.SHA256(key, SECRET_KEY);
-              return key.toString()
-            },
-            encrypt: function encrypt(data) {
-              data = CryptoJS.AES.encrypt(data, SECRET_KEY);
-              data = data.toString();
-              return data
-            },
-            decrypt: function decrypt(data) {
-              data = CryptoJS.AES.decrypt(data, SECRET_KEY);
-              data = data.toString(CryptoJS.enc.Utf8);
-              return data
-            }
-          })
-
-          var data = {
-            secret: 'data'
-          }
-          secureStorage.setItem('data', data);
-          navigate("/");
-
-          console.log(secureStorage.key('data'));
-          // console.log(secureStorage.value('data'));
-          console.log(secureStorage.getItem('data'));
+          navigate("/main");
         } else {
           alert("로그인 실패");
-          navigate("/leaderlogin");
+          navigate("/");
         }
       })
       .catch((e) => {
@@ -112,6 +85,13 @@ const LeaderLogin = () => {
           type="button"
           value="로그인"
           onClick={handleLogin}
+          onKeyPress={
+            (e) => {
+              if (e.key === 'Enter') {
+                handleLogin();
+              }
+            }
+          }
         />
         <Link to="/leaderjoin">팀장 등록</Link>
         <Link to="/memberlogin">팀원 로그인</Link>

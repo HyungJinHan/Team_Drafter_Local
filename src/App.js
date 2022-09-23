@@ -10,7 +10,6 @@ import "./App.css";
 import AuctionArticle from "./auction/AuctionArticle";
 
 function App() {
-  //tq 욕함? ('-` ;;)
   return (
     <div className="mainBody">
       <div className="mainVideo">
@@ -19,11 +18,11 @@ function App() {
         </video>
         <div className="appBody">
           <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/leaderlogin" element={<LeaderLogin />} />
+            <Route path="/" element={<LeaderLogin />} />
             <Route path="/leaderjoin" element={<LeaderJoin />} />
             <Route path="/memberlogin" element={<MemberLogin />} />
             <Route path="/memberjoin" element={<MemberJoin />} />
+            <Route path="/main" element={<Main />} />
             <Route path="/auction" element={<Auction />} />
             <Route path="/auction/JSA" element={<AuctionArticle />} />
             <Route path="/auction/JSB" element={<AuctionArticle />} />
