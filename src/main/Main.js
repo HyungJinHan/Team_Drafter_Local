@@ -8,21 +8,20 @@ const Main = () => {
   const { LEADER_COIN } = useStore();
   const navigate = useNavigate();
 
-  const memberName = window.sessionStorage.getItem("memberName");
-  const leaderName = window.sessionStorage.getItem("leaderName");
+  const lName = window.sessionStorage.getItem("name");
 
   const handleLogout = () => {
     window.sessionStorage.clear();
     navigate("/");
   };
 
-  if ((leaderName || memberName) === null) {
+  if (lName === null) {
     return (
       <div className="maintext">
         <a href="http://localhost:3000/leaderlogin">로그인</a>
       </div>
     );
-  } else if ((leaderName || memberName) !== null) {
+  } else if (lName !== null) {
     return (
       <div className="maintext">
         <a href="http://localhost:3000/auction">경매{LEADER_COIN}</a>

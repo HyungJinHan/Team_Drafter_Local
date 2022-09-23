@@ -30,7 +30,7 @@ const LeaderLogin = () => {
       })
       .then((res) => {
         if (res.data[0].cnt === 1) {
-          window.sessionStorage.setItem("leaderName", nameRef.current.value);
+          window.sessionStorage.setItem("name", nameRef.current.value);
           var SECRET_KEY = nameRef.current.value;
 
           const secureStorage = new SecureStorage(sessionStorage, {
