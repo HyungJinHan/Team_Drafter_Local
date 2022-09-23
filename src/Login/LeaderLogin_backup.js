@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "./MemberLogin.css";
+import "./LeaderLogin.css";
+import SecureStorage from "secure-web-storage";
+var CryptoJS = require("crypto-js");
 
-const MemberLogin = () => {
+const LeaderLogin = () => {
   const nameRef = useRef();
   const pwRef = useRef();
 
@@ -22,17 +24,44 @@ const MemberLogin = () => {
     }
 
     axios
-      .post("http://localhost:8008/memberlogin", {
-        MEMBER_NAME: nameRef.current.value,
-        MEMBER_PW: pwRef.current.value,
+      .post("http://localhost:8008/leaderlogin", {
+        LEADER_NAME: nameRef.current.value,
+        LEADER_PW: pwRef.current.value,
       })
       .then((res) => {
         if (res.data[0].cnt === 1) {
           window.sessionStorage.setItem("name", nameRef.current.value);
-          navigate("/main");
+          var SECRET_KEY = nameRef.current.value;
+
+          const secureStorage = new SecureStorage(sessionStorage, {
+            hash: function hash(key) {
+              key = CryptoJS.SHA256(key, SECRET_KEY);
+              return key.toString()
+            },
+            encrypt: function encrypt(data) {
+              data = CryptoJS.AES.encrypt(data, SECRET_KEY);
+              data = data.toString();
+              return data
+            },
+            decrypt: function decrypt(data) {
+              data = CryptoJS.AES.decrypt(data, SECRET_KEY);
+              data = data.toString(CryptoJS.enc.Utf8);
+              return data
+            }
+          })
+
+          var data = {
+            secret: 'data'
+          }
+          secureStorage.setItem('data', data);
+          navigate("/");
+
+          console.log(secureStorage.key('data'));
+          // console.log(secureStorage.value('data'));
+          console.log(secureStorage.getItem('data'));
         } else {
           alert("로그인 실패");
-          navigate("/memberlogin");
+          navigate("/leaderlogin");
         }
       })
       .catch((e) => {
@@ -46,7 +75,7 @@ const MemberLogin = () => {
         <div className="inputBox">
           <input
             type="text"
-            name="membername"
+            name="leadername"
             required="requireds"
             ref={nameRef}
             autoComplete="off"
@@ -83,18 +112,12 @@ const MemberLogin = () => {
           type="button"
           value="로그인"
           onClick={handleLogin}
-          onKeyPress={
-            (e) => {
-              if (e.key === 'Enter') {
-                handleLogin();
-              }
-            }
-          }
         />
-        <Link to="/memberjoin">팀원 등록</Link>
-        <Link to="/leaderlogin">팀장 로그인</Link>
+        <Link to="/leaderjoin">팀장 등록</Link>
+        <Link to="/memberlogin">팀원 로그인</Link>
       </div>
     </>
   );
 };
-export default MemberLogin;
+
+export default LeaderLogin;
