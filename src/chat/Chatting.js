@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
 function Chatting({
@@ -8,6 +8,10 @@ function Chatting({
 }) {
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
+  const messageRef = useRef()
+
+  const chatHour = new Date(Date.now()).getHours()
+  const chatMinute = new Date(Date.now()).getMinutes()
 
   const sendMessage = async () => {
     if (currentMessage !== '') {
@@ -16,9 +20,9 @@ function Chatting({
         author: username,
         message: currentMessage,
         time:
-          new Date(Date.now()).getHours() +
+          (chatHour < 10 ? `0${chatHour}` : chatHour) +
           ':' +
-          new Date(Date.now()).getMinutes()
+          (chatMinute < 10 ? `0${chatMinute}` : chatMinute)
       };
       await socket.emit('send_message', messageData);
       setMessageList(
@@ -70,8 +74,13 @@ function Chatting({
             setCurrentMessage(e.target.value);
           }}
           onKeyPress={(e) => {
-            e.key === 'Enter' && sendMessage();
+            if (e.key === 'Enter') {
+              sendMessage();
+              messageRef.current.value = '';
+              setCurrentMessage('')
+            };
           }}
+          ref={messageRef}
         />
         <button
           onClick={sendMessage}

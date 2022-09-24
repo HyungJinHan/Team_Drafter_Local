@@ -123,7 +123,6 @@ app.post("/memberjoin", (req, res) => {
 
 app.post("/class", (req, res) => {
   var LEADER_NAME = req.body.LEADER_NAME;
-
   const sqlQuery = "SELECT LEADER_CLASS FROM LEADER_TBL WHERE LEADER_NAME = ?;";
   db.query(sqlQuery, [LEADER_NAME], (err, result) => {
     res.send(result);
@@ -133,7 +132,7 @@ app.post("/class", (req, res) => {
 app.post("/auction", (req, res) => {
   var LEADER_CLASS = req.body.LEADER_CLASS;
   const sqlQuery =
-    "SELECT LEADER_NAME, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN FROM LEADER_TBL;";
+    "SELECT LEADER_NAME, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN FROM LEADER_TBL WHERE LEADER_CLASS = ?;";
   db.query(sqlQuery, [LEADER_CLASS], (err, result) => {
     res.send(result);
   });

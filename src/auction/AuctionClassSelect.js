@@ -4,59 +4,57 @@ import axios from "axios";
 
 
 const AuctionClassSelect = () => {
+  const [classList, setClassList] = useState([]);
 
+  const classGetList = () => {
+    axios
+      .post("http://localhost:8008/classchoice")
+      .then((res) => {
+        const { data } = res;
+        setClassList({
+          classList: data,
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+  };
 
-    const [classList, setClassList] = useState([]);
+  const totClass = classList.classList;
 
-    const classGetList = () => {
-      axios
-        .post("http://localhost:8008/classchoice")
-        .then((res) => {
-          const { data } = res;
-          setClassList({
-            classList: data,
-          });
-        })
-        .catch((e) => {
-          console.log(e);
-        })
-    };
+  useEffect(() => { classGetList(); }, []);
 
-    const totClass = classList.classList;
-
-    useEffect(() => { classGetList(); }, []);
-    
-    return(
-        <div>
-            {totClass?.map((cl) => (
-            <table key={cl.CLASS_NAME} border="1">
-            <tbody align="center">
-              <tr>
-                <td width={170}>
-                  {cl.CLASS_NAME}
-                  &nbsp;반
-                </td>
-                <td width={170}>
-                  {cl.CLASS_MAIN}
-                  &nbsp;강사님
-                </td>
-                <td width={170}>
-                  {cl.CLASS_SUB}
-                  &nbsp;부 강사님
-                </td>
-                <td width={170}>
-                  {cl.CLASS_LANG}
-                  &nbsp;언어
-                </td>
-                <td className="intoPlayer">
-                  <Link to={cl.CLASS_PATH} ><p>입짱</p></Link>
-                </td>
-              </tr>
-            </tbody>
-            </table>
-            ))}
-        </div>
-    )
+  return (
+    <div>
+      {totClass?.map((cl) => (
+        <table key={cl.CLASS_NAME} border="1">
+          <tbody align="center">
+            <tr>
+              <td width={170}>
+                {cl.CLASS_NAME}
+                &nbsp;반
+              </td>
+              <td width={170}>
+                {cl.CLASS_MAIN}
+                &nbsp;강사님
+              </td>
+              <td width={170}>
+                {cl.CLASS_SUB}
+                &nbsp;부 강사님
+              </td>
+              <td width={170}>
+                {cl.CLASS_LANG}
+                &nbsp;언어
+              </td>
+              <td className="intoPlayer">
+                <Link to={cl.CLASS_PATH} ><p>입장</p></Link>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      ))}
+    </div>
+  )
 }
 
 export default AuctionClassSelect;

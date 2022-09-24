@@ -43,36 +43,6 @@ const LeaderJoin = () => {
       classRef.current.focus();
       return false;
     }
-    if (classRef.current.value === "App 특화") {
-      var classValue = "App";
-    }
-    else if (classRef.current.value === "JS 특화 A") {
-      classValue = "JSA";
-    }
-    else if (classRef.current.value === "JS 특화 B") {
-      classValue = "JSB";
-    }
-    else if (classRef.current.value === "Spring 특화 A") {
-      classValue = "SprA";
-    }
-    else if (classRef.current.value === "Spring 특화 B") {
-      classValue = "SprB";
-    }
-    else if (classRef.current.value === "사물지능") {
-      classValue = "SAMUL";
-    }
-    else if (classRef.current.value === "시각지능") {
-      classValue = "SIGAK";
-    }
-    else if (classRef.current.value === "언어지능") {
-      classValue = "UNUH";
-    }
-    else if (classRef.current.value === "클라우드 A") {
-      classValue = "CLDA";
-    }
-    else if (classRef.current.value === "클라우드 B") {
-      classValue = "CLDB";
-    }
 
     axios
       .post("http://localhost:8008/leaderjoin", {
@@ -226,34 +196,34 @@ const LeaderJoin = () => {
                   <option value="">
                     반을 선택하세요
                   </option>
-                  <option value="App 특화">
+                  <option value="App">
                     App 특화 (1 강의실)
                   </option>
-                  <option value="JS 특화 A">
+                  <option value="JSA">
                     JS 특화 A (2 강의실)
                   </option>
-                  <option value="JS 특화 B">
+                  <option value="JSB">
                     JS 특화 B (3 강의실)
                   </option>
-                  <option value="Spring 특화 A">
+                  <option value="SprA">
                     Spring 특화 A (4 강의실)
                   </option>
-                  <option value="Spring 특화 B">
+                  <option value="SprB">
                     Spring 특화 B (5 강의실)
                   </option>
-                  <option value="사물지능">
+                  <option value="SAMUL">
                     사물지능 (6 강의실)
                   </option>
-                  <option value="언어지능">
+                  <option value="UNUH">
                     언어지능 (7 강의실)
                   </option>
-                  <option value="시각지능">
+                  <option value="SIGAK">
                     시각지능 (8 강의실)
                   </option>
-                  <option value="클라우드 A">
+                  <option value="CLDA">
                     클라우드 A (9 강의실)
                   </option>
-                  <option value="클라우드 B">
+                  <option value="CLDB">
                     클라우드 B (10 강의실)
                   </option>
                 </select>

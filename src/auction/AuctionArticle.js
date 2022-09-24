@@ -5,6 +5,7 @@ import AuctionMy from "./AuctionMy";
 import AuctionLeader from "./AuctionLeader";
 import "./AuctionArticle.css";
 import Chat from "../chat/Chat";
+import AuctionMember from "./AuctionMember";
 
 const AuctionArticle = () => {
 
@@ -13,8 +14,25 @@ const AuctionArticle = () => {
   console.log("path =>", classKey)
 
   const [auctionList, setAuctionList] = useState([]);
+  const [leaderList, setLeaderList] = useState([]);
 
   const leaderGetList = () => {
+    axios
+      .post("http://localhost:8008/auction", {
+        LEADER_CLASS: classKey,
+      })
+      .then((res) => {
+        const { data } = res;
+        setLeaderList({
+          leaderList: data,
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const memberGetList = () => {
     axios
       .post("http://localhost:8008/classarticle", {
         MEMBER_CLASS: classKey,
@@ -30,40 +48,30 @@ const AuctionArticle = () => {
       })
   };
 
+  const leaders = leaderList.leaderList;
   const articles = auctionList.auctionList;
 
-  useEffect(() => { leaderGetList(); }, []);
+  useEffect(() => {
+    memberGetList();
+    leaderGetList();
+  }, []);
 
   return (
     <>
       <div className="auctionArticleBody">
         <div className="auctionArticlItem">
-          <AuctionLeader />
+          {leaders?.map((ld) => (
+            <AuctionLeader
+              classkey={classKey}
+              ld={ld}
+            />
+          ))}
         </div>
         <div className="auctionArticlItem">
           {articles?.map((atc) => (
-            <table key={atc.MEMBER_NAME} border="1">
-              <tbody align="center">
-                <tr>
-                  <td width={100}>
-                    {atc.MEMBER_NAME}
-                  </td>
-                  <td width={100}>
-                    {atc.MEMBER_CLASS}
-                    &nbsp;반
-                  </td>
-                  <td width={100}>
-                    {atc.MEMBER_GACHI}
-                    &nbsp;가치
-                  </td>
-                  <td>
-                    <button>
-                      드가자~
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <AuctionMember
+              atc={atc}
+            />
           ))}
         </div>
         <div className="auctionArticlItem">

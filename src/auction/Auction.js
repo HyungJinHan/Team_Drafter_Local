@@ -12,18 +12,17 @@ const Auction = () => {
 
   const auctionPath = location.pathname;
   console.log("auctionPath =>", auctionPath);
-  
+
   return (
     <>
       <div className="AuctionBody">
         <div className="AuctionItem">
-        <AuctionLeader/>
         </div>
         <div className="AuctionItem">
-        <AuctionClassSelect />
+          <AuctionClassSelect />
         </div>
         <div className="AuctionItem">
-        <AuctionMy />
+          <AuctionMy />
         </div>
       </div>
     </>

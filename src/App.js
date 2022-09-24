@@ -7,7 +7,7 @@ import MemberJoin from "./Login/MemberJoin";
 import Auction from "./auction/Auction";
 import background from "./main/videos/mainvideo.mp4";
 import "./App.css";
-import AuctionArticle from "./auction/AuctionArticle";
+import AuctionList from "./auction/AuctionArticle";
 
 function App() {
   return (
@@ -24,22 +24,16 @@ function App() {
             <Route path="/memberjoin" element={<MemberJoin />} />
             <Route path="/main" element={<Main />} />
             <Route path="/auction" element={<Auction />} />
-            <Route path="/auction/JSA" element={<AuctionArticle />} />
-            <Route path="/auction/JSB" element={<AuctionArticle />} />
-
-
-            {/* <Route path="/App" element={<AuctionArticle />} />
-            <Route path="/JSA" element={<AuctionArticle />} />
-            <Route path="/JSB" element={<AuctionArticle />} />
-            <Route path="/SprA" element={<AuctionArticle />} />
-            <Route path="/SprB" element={<AuctionArticle />} />
-            <Route path="/SAMUL" element={<AuctionArticle />} />
-            <Route path="/SIGAK" element={<AuctionArticle />} />
-            <Route path="/UNUH" element={<AuctionArticle />} />
-            <Route path="/CLDA" element={<AuctionArticle />} />
-            <Route path="/CLDB" element={<AuctionArticle />} /> */}
-
-
+            <Route path="/auction/App" element={<AuctionList />} />
+            <Route path="/auction/JSA" element={<AuctionList />} />
+            <Route path="/auction/JSB" element={<AuctionList />} />
+            <Route path="/auction/SprA" element={<AuctionList />} />
+            <Route path="/auction/SprB" element={<AuctionList />} />
+            <Route path="/auction/SAMUL" element={<AuctionList />} />
+            <Route path="/auction/SIGAK" element={<AuctionList />} />
+            <Route path="/auction/UNUH" element={<AuctionList />} />
+            <Route path="/auction/CLDA" element={<AuctionList />} />
+            <Route path="/auction/CLDB" element={<AuctionList />} />
           </Routes>
         </div>
       </div>

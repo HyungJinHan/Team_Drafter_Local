@@ -56,8 +56,8 @@
 }
 
 .chat-window {
-  width: 300px;
-  height: 420px;
+  width: 800px;
+  height: 600px;
   position: relative;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .chat-window .chat-body {
-  height: calc(450px - (45px + 70px));
+  height: calc(600px - (45px + 70px));
   border: 1px solid #263238;
   background: #fff;
   position: relative;
@@ -183,7 +183,7 @@
   display: grid;
   place-items: center;
   cursor: pointer;
-  flex: 15%;
+  flex: 5%;
   height: 100%;
   /* background: transparent; */
   outline: none;
