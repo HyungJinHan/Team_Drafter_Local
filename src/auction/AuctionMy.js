@@ -34,7 +34,7 @@ const AuctionMy = () => {
   return (
     <div>
       {myLists?.map((ml) => (
-        <div key={ml.CLASS_NAME}>
+        <div key={ml.LEADER_NAME}>
           <span>
             이름 {ml.LEADER_NAME} |&nbsp;
           </span>

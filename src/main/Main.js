@@ -26,7 +26,6 @@ const Main = () => {
   return (
     <div className="maintext">
       <a href="http://localhost:3000/auction">경매{LEADER_COIN}</a>
-      {/* <채팅 컴포넌트 자리/> */}
       <br />
       <br />
       <input type="button" onClick={handleLogout} value="로그아웃" />

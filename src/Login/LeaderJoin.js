@@ -86,7 +86,7 @@ const LeaderJoin = () => {
         console.log("handleMember =>", res);
         if (res.data.affectedRows === 1) {
           alert("회원가입 성공!!!");
-          navigate("/leaderlogin");
+          navigate("/");
         } else {
           alert("회원가입 실패");
         }

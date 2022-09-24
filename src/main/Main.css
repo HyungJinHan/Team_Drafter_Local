@@ -1,19 +1,19 @@
-body{
+body {
     margin: 0px;
     padding: 0px;
 }
-.maintext{
+
+.maintext {
     position: absolute;
     width: 100%;
-    top: 250px;
+    top: 500px;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     text-align: center;
 }
+
 .maintext a {
     font-size: 30px;
     color: #ffffff;
     text-decoration-line: none;
-  }
-
-
+}
