@@ -47,7 +47,7 @@ const AuctionClassSelect = () => {
                 &nbsp;언어
               </td>
               <td className="intoPlayer">
-                <Link to={cl.CLASS_PATH} ><p>입장</p></Link>
+                <Link to={cl.CLASS_PATH}><p>입장</p></Link>
               </td>
             </tr>
           </tbody>

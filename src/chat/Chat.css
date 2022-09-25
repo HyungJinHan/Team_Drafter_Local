@@ -16,7 +16,7 @@
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
 
-.joinChatContainer {
+/* .joinChatContainer {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -49,10 +49,10 @@
   background: #ff0095;
   color: #fff;
   cursor: pointer;
-}
+} */
 
 .joinChatContainer button:hover {
-  background: #610039;
+  background: #620080;
 }
 
 .chat-window {
@@ -67,10 +67,9 @@
 
 .chat-window .chat-header {
   height: 45px;
-  border-radius: 6px;
-  background: #263238;
+  /* border-radius: 6px; */
+  background: #ff0095;
   position: relative;
-  cursor: pointer;
 }
 
 .chat-window .chat-header p {
@@ -83,7 +82,7 @@
 
 .chat-window .chat-body {
   height: calc(600px - (45px + 70px));
-  border: 1px solid #263238;
+  border: 1px solid #620080;
   background: #fff;
   position: relative;
 }
@@ -142,7 +141,7 @@
 
 #other .message-content {
   justify-content: flex-start;
-  background-color: #610039;
+  background-color: #620080;
 }
 
 #other .message-meta {
@@ -192,7 +191,7 @@
 }
 
 .chat-window .chat-footer button:hover {
-  color: #610039;
+  color: #620080;
 }
 
 .hide {
