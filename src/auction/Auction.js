@@ -4,6 +4,7 @@ import AuctionLeader from "./AuctionLeader";
 import AuctionClassSelect from "./AuctionClassSelect";
 import AuctionMy from "./AuctionMy";
 import "./Auction.css";
+import LeaderCategory from "./LeaderCategory";
 
 
 const Auction = () => {
@@ -17,6 +18,7 @@ const Auction = () => {
     <>
       <div className="AuctionBody">
         <div className="AuctionItem">
+          <LeaderCategory />
         </div>
         <div className="AuctionItem">
           <AuctionClassSelect />

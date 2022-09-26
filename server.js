@@ -187,6 +187,15 @@ app.post("/mylist", (req, res) => {
   });
 });
 
+app.post("/leadercategory", (req, res) => {
+  var LEADER_CLASS = req.body.LEADER_CLASS;
+  const sqlQuery =
+    "SELECT LEADER_NAME, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN FROM LEADER_TBL WHERE LEADER_CLASS = ?;";
+  db.query(sqlQuery, [LEADER_CLASS], (err, result) => {
+    res.send(result);
+  });
+});
+
 server.listen(3001, () => {
   console.log('Server Running');
 });
