@@ -13,24 +13,25 @@ function Chatting({
   const chatHour = new Date(Date.now()).getHours()
   const chatMinute = new Date(Date.now()).getMinutes()
 
-  const sendMessage = async () => {
-    if (currentMessage !== '') {
-      const messageData = {
-        room: room,
-        author: username,
-        message: currentMessage,
-        time:
-          (chatHour < 10 ? `0${chatHour}` : chatHour) +
-          ':' +
-          (chatMinute < 10 ? `0${chatMinute}` : chatMinute)
-      };
-      await socket.emit('send_message', messageData);
-      setMessageList(
-        (list) => [...list, messageData]
-      );
-      setCurrentMessage('')
-    }
-  };
+  const sendMessage =
+    async () => {
+      if (currentMessage !== '') {
+        const messageData = {
+          room: room,
+          author: username,
+          message: currentMessage,
+          time:
+            (chatHour < 10 ? `0${chatHour}` : chatHour) +
+            ':' +
+            (chatMinute < 10 ? `0${chatMinute}` : chatMinute)
+        };
+        await socket.emit('send_message', messageData);
+        setMessageList(
+          (list) => [...list, messageData]
+        );
+        setCurrentMessage('')
+      }
+    };
 
   useEffect(() => {
     socket.on('receive_message', (data) => {
