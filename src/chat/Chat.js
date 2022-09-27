@@ -10,9 +10,6 @@ const Chat = (
 ) => {
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
-  const [messages, setMessages] = useState([]);
-  const [isTyping, setIsTyping] = useState(false); //지금 로그인한 사용자가 입력중인지 확인
-  const [typingUserList, setTypingUserList] = useState([]); //입력중인 사용자를 담음
   const messageRef = useRef()
   const chatHour = new Date(Date.now()).getHours()
   const chatMinute = new Date(Date.now()).getMinutes()
@@ -30,31 +27,7 @@ const Chat = (
         (list) => [...list, data]
       );
     })
-
-    socket.on("in user notice", (data) => {
-      console.log("입장 인삿말", data);
-
-      const notice = {
-        type: data.type,
-        content: `${data?.window.sessionStorage.getItem('name')}님이 들어오셨습니다.`,
-      };
-
-      setMessages((message) => [...message, notice]);
-    });
   }, [socket]);
-
-  useEffect(() => {
-    socket.on('user_typing', (data) => {
-      console.log('on typing', data);
-
-      const notice = {
-        content: data.window.sessionStorage.getItem('name'),
-        isTyping: data.isTyping
-      };
-
-      setTypingUserList([notice]);
-    });
-  }, []);
 
   const sendMessage =
     async () => {
@@ -75,8 +48,6 @@ const Chat = (
         setCurrentMessage('')
       }
     };
-
-
 
   var className = classKey.classKey
 
@@ -142,7 +113,6 @@ const Chat = (
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
                 sendMessage();
-                setIsTyping(true);
               };
             }}
             ref={messageRef}

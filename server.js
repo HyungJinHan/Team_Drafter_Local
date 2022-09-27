@@ -29,19 +29,12 @@ io.on('connection', (socket) => {
   socket.on('join_room', (data) => {
     socket.join(data);
 
-    console.log(`User With ID : ${socket.id} joined room : ${data}`)
-
-    socket.broadcast.in(data.room).emit('in user notice', data)
+    console.log(`User With ID : ${socket.id} joined room : ${data.room}`)
   });
 
   socket.on('send_message', (data) => {
     console.log(data);
     socket.to(data.room).emit('receive_message', data);
-  })
-
-  socket.on('user_typing', (data) => {
-    console.log("타이핑", data);
-    socket.broadcast.in(data.room).emit("user_typing", data);
   })
 
   socket.on('disconnect', () => {
