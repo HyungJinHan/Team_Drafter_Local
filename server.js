@@ -30,6 +30,7 @@ io.on('connection', (socket) => {
     socket.join(data);
 
     console.log(`User With ID : ${socket.id} joined room : ${data.room}`)
+    socket.broadcast.in(data.room).emit("in user notice", data)
   });
 
   socket.on('send_message', (data) => {
@@ -37,8 +38,9 @@ io.on('connection', (socket) => {
     socket.to(data.room).emit('receive_message', data);
   })
 
-  socket.on('disconnect', () => {
+  socket.on('disconnect', (data) => {
     console.log('User Disconnected', socket.id);
+    socket.broadcast.in(data.room).emit("out user notice", data);
   });
 });
 
