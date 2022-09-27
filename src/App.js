@@ -8,6 +8,7 @@ import Auction from "./auction/Auction";
 import background from "./main/videos/mainvideo.mp4";
 import "./App.css";
 import AuctionList from "./auction/AuctionArticle";
+import AuctionCreate from "./auction/AuctionCreate";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/auction/UNUH" element={<AuctionList />} />
             <Route path="/auction/CLDA" element={<AuctionList />} />
             <Route path="/auction/CLDB" element={<AuctionList />} />
+            <Route path="/auction/create/JSA" element={<AuctionCreate />} />
           </Routes>
         </div>
       </div>
