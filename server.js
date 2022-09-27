@@ -210,6 +210,9 @@ app.post("/auctionDelete", (req, res) => {
   var num = req.body.num;
   const sqlQuery = "DELETE FROM AUCTIONEER_TBL WHERE AUCTIONEER_INDEX = ?;";
   db.query(sqlQuery, [num], (err, result) => {
+    res.send(result);
+  });
+});
 
 app.post("/leadercategory", (req, res) => {
   var LEADER_CLASS = req.body.LEADER_CLASS;
