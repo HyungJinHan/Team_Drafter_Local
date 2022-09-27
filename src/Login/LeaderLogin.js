@@ -2,8 +2,6 @@ import { useRef } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "./LeaderLogin.css";
-import SecureStorage from "secure-web-storage";
-var CryptoJS = require("crypto-js");
 
 const LeaderLogin = () => {
   const nameRef = useRef();
@@ -49,7 +47,7 @@ const LeaderLogin = () => {
           <input
             type="text"
             name="leadername"
-            required="requireds"
+            required="required"
             ref={nameRef}
             autoComplete="off"
             onKeyPress={
@@ -67,7 +65,7 @@ const LeaderLogin = () => {
           <input
             type="password"
             name="pw"
-            required="requireds"
+            required="required"
             ref={pwRef}
             autoComplete="off"
             onKeyPress={

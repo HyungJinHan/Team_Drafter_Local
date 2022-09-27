@@ -24,7 +24,7 @@ const AuctionArticle = () => {
 
   const leaderGetList = () => {
     axios
-      .post("http://localhost:8008/auction", {
+      .post("http://localhost:8008/leaderlist", {
         LEADER_CLASS: classKey,
       })
       .then((res) => {
@@ -40,7 +40,7 @@ const AuctionArticle = () => {
 
   const memberGetList = () => {
     axios
-      .post("http://localhost:8008/classarticle", {
+      .post("http://localhost:8008/memberlist", {
         MEMBER_CLASS: classKey,
       })
       .then((res) => {
@@ -103,12 +103,19 @@ const AuctionArticle = () => {
       <div className="auctionArticleBody">
         <div className="auctionArticlItem">
           {leaders?.map((ld) => (
-            <AuctionLeader classkey={classKey} ld={ld} />
+            <AuctionLeader
+              classkey={classKey}
+              ld={ld}
+              key={ld.LEADER_NAME}
+            />
           ))}
         </div>
         {/* <div className="auctionArticlItem">
           {articles?.map((atc) => (
-            <AuctionMember atc={atc} />
+            <AuctionMember
+              atc={atc}
+              key={atc.MEMBER_NAME}
+            />
           ))}
         </div> */}
         <div className="auctionArticlItem">

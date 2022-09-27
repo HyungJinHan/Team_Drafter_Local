@@ -7,7 +7,7 @@ const AuctionMember = ({
   var className = atc.MEMBER_CLASS
 
   if (atc.MEMBER_CLASS === "App") {
-    className = 'App 특화(1 강의실)'
+    className = 'App 특화 (1 강의실)'
   } else if (atc.MEMBER_CLASS === "JSA") {
     className = 'JS 특화 A (2 강의실)'
   } else if (atc.MEMBER_CLASS === "JSB") {

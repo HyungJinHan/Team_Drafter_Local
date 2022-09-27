@@ -3,7 +3,7 @@ const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-const http = require("http");
+const http = require('http');
 const { Server } = require("socket.io");
 require("dotenv").config();
 
@@ -18,28 +18,27 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST']
+  }
 });
 
-io.on("connection", (socket) => {
+io.on('connection', (socket) => {
   console.log(`User Connected : ${socket.id}`);
 
-  socket.on("join_room", (data) => {
+  socket.on('join_room', (data) => {
     socket.join(data);
-    console.log(`User With ID : ${socket.id} joined room : ${data.room}`)
-    socket.broadcast.in(data.room).emit("in user notice", data)
+    socket.broadcast.emit('join_room', data + '입장')
+    console.log(`User With ID : ${socket.id} joined room : ${data}`)
   });
 
-  socket.on("send_message", (data) => {
+  socket.on('send_message', (data) => {
     console.log(data);
     socket.to(data.room).emit('receive_message', data);
   })
 
-  socket.on('disconnect', (data) => {
+  socket.on('disconnect', () => {
     console.log('User Disconnected', socket.id);
-    socket.broadcast.in(data.room).emit("out user notice", data);
   });
 });
 
@@ -82,7 +81,13 @@ app.post("/leaderjoin", (req, res) => {
   const sqlQuery = "INSERT INTO LEADER_TBL VALUES (?, ?, ?, ?, ?, 100);";
   db.query(
     sqlQuery,
-    [LEADER_NAME, LEADER_PW, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS],
+    [
+      LEADER_NAME,
+      LEADER_PW,
+      LEADER_TEAM,
+      LEADER_GRADE,
+      LEADER_CLASS,
+    ],
     (err, result) => {
       res.send(result);
     }
@@ -150,8 +155,8 @@ app.post("/classchoice", (req, res) => {
 });
 
 app.post("/memberinfo", (req, res) => {
-  var memberName = req.body.MEMBER_NAME;
-  const sqlQuery = "SELECT * FROM MEMBER_TBL WHERE MEMBER_NAME = ?";
+  var memberName = req.body.memberName;
+  const sqlQuery = "SELECT * FROM MEMBER_TBL WHERE LEADER_NAME = ?";
   db.query(sqlQuery, [memberName], (err, result) => {
     res.send(result);
   });
@@ -175,53 +180,8 @@ app.post("/mylist", (req, res) => {
   });
 });
 
-app.post("/auctineerSearch", (req, res) => {
-  const sqlQuery =
-    "SELECT AUCTIONEER_NAME, AUCTIONEER_APPEAL, DATE_FORMAT(AUCTIONEER_DATE, '%y-%m-%d') AS AUCTIONEER_date, TIME_TO_SEC(DATE_ADD(AUCTIONEER_date, INTERVAL (AUCTIONEER_TIMER) MINUTE)) AS AUCTIONEER_timer, AUCTIONEER_GACHI FROM AUCTIONEER_TBL;";
-  db.query(sqlQuery, (err, result) => {
-    res.send(result);
-  });
-});
-
-app.post("/auctioneerCreate", (req, res) => {
-  var AUCTIONEER_NAME = req.body.ACTIONEER_NAME;
-  var AUCTIONEER_APPEAL = req.body.ACTIONEER_APPEAL;
-  var AUCTIONEER_TIMER = req.body.ACTIONEER_TIMER;
-  var AUCTIONEER_GACHI = req.body.ACTIONEER_GACHI;
-  var AUCTIONEER_CLASS = req.body.ACTIONEER_CLASS;
-  const sqlQuery =
-    "INSERT INTO AUCTIONEER_TBL (AUCTIONEER_NAME, AUCTIONEER_CLASS, AUCTIONEER_APPEAL, AUCTIONEER_TIMER, AUCTIONEER_GACHI) VALUES (?,?,?,?,?);";
-  db.query(
-    sqlQuery,
-    [
-      AUCTIONEER_NAME,
-      AUCTIONEER_CLASS,
-      AUCTIONEER_APPEAL,
-      AUCTIONEER_TIMER,
-      AUCTIONEER_GACHI,
-    ],
-    (err, result) => {
-      res.send(result);
-    }
-  );
-});
-
-app.post("/auctionDelete", (req, res) => {
-  var num = req.body.num;
-  const sqlQuery = "DELETE FROM AUCTIONEER_TBL WHERE AUCTIONEER_INDEX = ?;";
-  db.query(sqlQuery, [num], (err, result) => {
-
-app.post("/leadercategory", (req, res) => {
-  var LEADER_CLASS = req.body.LEADER_CLASS;
-  const sqlQuery =
-    "SELECT LEADER_NAME, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN FROM LEADER_TBL WHERE LEADER_CLASS = ?;";
-  db.query(sqlQuery, [LEADER_CLASS], (err, result) => {
-    res.send(result);
-  });
-});
-
 server.listen(3001, () => {
-  console.log("Server Running");
+  console.log('Server Running');
 });
 
 const listener = app.listen(process.env.PORT || 8008, () => {
