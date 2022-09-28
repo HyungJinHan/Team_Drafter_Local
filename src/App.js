@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import LeaderLogin from "./Login/LeaderLogin";
 import LeaderJoin from "./Login/LeaderJoin";
 import Main from "./main/Main";
