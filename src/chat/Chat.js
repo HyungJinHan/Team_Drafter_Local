@@ -17,42 +17,31 @@ const Chat = (
 
   useEffect(() => {
     if (window.sessionStorage.getItem('name') !== '' && classKey.classKey !== '') {
-      socket.emit('join_room', classKey.classKey);
-    }
+      socket.emit('join_room', (data) => {
+        const notice = {
+          room: classKey.classKey,
+          content: `${window.sessionStorage.getItem('name')}님이 들어오셨습니다.`,
+        };
+        setMessages((message) => [...message, notice]);
+      });
+    };
+    // socket.on("in user notice", (data) => {
+    //   console.log("입장 인삿말", data);
 
-    socket.on('in user notice', (data) => {
-      console.log("입장 인삿말", data);
-      const notice = {
-        room: classKey.classKey,
-        type: data.type,
-        content: `${window.sessionStorage.getItem('name')}님이 들어오셨습니다.`
-      };
-      setMessages((message) => [...message, notice]);
-    });
-
-    socket.on('disconnect', async (data) => {
-      console.log("outUser", data);
-    });
-
-    socket.on("out user notice", (data) => {
-      console.log("퇴장 인삿말", data);
-
-      const notice = {
-        room: classKey.classKey,
-        type: data.type,
-        content: `${window.sessionStorage.getItem('name')}님이 나가셨습니다.`,
-      };
-      setMessages((messages) => [...messages, notice]);
-    });
+    //   const notice = {
+    //     room: classKey.classKey,
+    //     content: `${window.sessionStorage.getItem('name')}님이 들어오셨습니다.`,
+    //   };
+    //   setMessages((message) => [...message, notice]);
+    // });
   }, [])
 
   useEffect(() => {
     socket.on('receive_message', (data) => {
-      // console.log(data);
       setMessageList(
         (list) => [...list, data]
       );
-    })
+    });
   }, [socket]);
 
   const sendMessage =
@@ -66,7 +55,6 @@ const Chat = (
             (chatHour < 10 ? `0${chatHour}` : chatHour) +
             ':' +
             (chatMinute < 10 ? `0${chatMinute}` : chatMinute),
-          type: 'SYSTEM_USER_IN'
         };
         await socket.emit('send_message', messageData);
         setMessageList(
@@ -106,17 +94,7 @@ const Chat = (
     <div className='ChatMain'>
       <div className='chat-window'>
         <div className='chat-header'>
-          {messages &&
-            messages.map((message) =>
-              message.type === 'SYSTEM_USER_IN' ||
-                message.type === 'SYSTEM_USER_OUT' ? (
-                <div key={window.sessionStorage.getItem('name')}>
-                  <div className="notice">{messages}</div>
-                </div>
-              ) : null
-            )
-          }
-          <p>&lt; {className} &gt; 채팅 방 / {window.sessionStorage.getItem('name')} 로그인 중</p>
+          <p>&lt; {className} &gt; 채팅 방 / {window.sessionStorage.getItem('name')} 로그인 중 {messages}</p>
         </div>
         <div className='chat-body'>
           <ScrollToBottom className='message-container'>
