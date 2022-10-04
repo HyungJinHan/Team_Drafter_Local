@@ -13,18 +13,13 @@ const Chat = (
   const messageRef = useRef();
   const chatHour = new Date(Date.now()).getHours();
   const chatMinute = new Date(Date.now()).getMinutes();
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     if (window.sessionStorage.getItem('name') !== '' && classKey.classKey !== '') {
-      socket.emit('join_room', (data) => {
-        const notice = {
-          room: classKey.classKey,
-          content: `${window.sessionStorage.getItem('name')}님이 들어오셨습니다.`,
-        };
-        setMessages((message) => [...message, notice]);
-      });
+      socket.emit('join_room', classKey.classKey);
     };
+
     // socket.on("in user notice", (data) => {
     //   console.log("입장 인삿말", data);
 
@@ -94,7 +89,7 @@ const Chat = (
     <div className='ChatMain'>
       <div className='chat-window'>
         <div className='chat-header'>
-          <p>&lt; {className} &gt; 채팅 방 / {window.sessionStorage.getItem('name')} 로그인 중 {messages}</p>
+          <p>&lt; {className} &gt; 채팅 방 / {window.sessionStorage.getItem('name')} 로그인 중</p>
         </div>
         <div className='chat-body'>
           <ScrollToBottom className='message-container'>
