@@ -12,7 +12,7 @@ import AuctionList from "./AuctionList";
 
 const AuctionArticle = () => {
   const location = useLocation();
-  console.log(location)
+  // console.log(location)
   const auctionCreateUrl = useNavigate();
   const classKey = location.pathname.substring(9, 20);
   console.log("path =>", classKey);
@@ -104,11 +104,7 @@ const AuctionArticle = () => {
       <div className="auctionArticleBody">
         <div className="auctionArticlItem">
           {leaders?.map((ld) => (
-            <AuctionLeader
-              classkey={classKey}
-              ld={ld}
-              key={ld.LEADER_NAME}
-            />
+            <AuctionLeader classkey={classKey} ld={ld} key={ld.LEADER_NAME} />
           ))}
         </div>
         {/* <div className="auctionArticlItem">
