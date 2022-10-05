@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const LeaderCategory = () => {
 
-  const [classAdd, setClassAdd] = useState("");
+  const [classAdd, setClassAdd] = useState('');
+
   const [leaderList, setLeaderList] = useState([]);
 
   const handleClick = (e) => {
@@ -33,8 +34,9 @@ const LeaderCategory = () => {
 
   const leaders = leaderList.leaderList;
 
-  useEffect(() => { leaderGetList() }, [classAdd]);
-  console.log("classAdd =>", classAdd);
+  useEffect(() => {
+    leaderGetList();
+  }, [classAdd]);
   return (
     <div>
       <table>
