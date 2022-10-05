@@ -9,6 +9,7 @@ import background from "./main/videos/mainvideo.mp4";
 import "./App.css";
 import AuctionList from "./auction/AuctionArticle";
 import AuctionCreate from "./auction/AuctionCreate";
+import Nivobar from "./chart/Nivobar";
 
 function App() {
   return (
@@ -35,7 +36,17 @@ function App() {
             <Route path="/auction/UNUH" element={<AuctionList />} />
             <Route path="/auction/CLDA" element={<AuctionList />} />
             <Route path="/auction/CLDB" element={<AuctionList />} />
+            <Route path="/auction/create/App" element={<AuctionCreate />} />
             <Route path="/auction/create/JSA" element={<AuctionCreate />} />
+            <Route path="/auction/create/JSB" element={<AuctionCreate />} />
+            <Route path="/auction/create/SprA" element={<AuctionCreate />} />
+            <Route path="/auction/create/SprB" element={<AuctionCreate />} />
+            <Route path="/auction/create/SAMUL" element={<AuctionCreate />} />
+            <Route path="/auction/create/SIGAK" element={<AuctionCreate />} />
+            <Route path="/auction/create/UNUH" element={<AuctionCreate />} />
+            <Route path="/auction/create/CLDA" element={<AuctionCreate />} />
+            <Route path="/auction/create/CLDB" element={<AuctionCreate />} />
+            <Route path="/nivo" element={<Nivobar />} />
           </Routes>
         </div>
       </div>
