@@ -1,13 +1,16 @@
 import { useRef } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "./LeaderLogin.css";
+import "./Login.css";
 
 const LeaderLogin = () => {
   const nameRef = useRef();
   const pwRef = useRef();
 
   const navigate = useNavigate();
+
+  const goMemberjoin = () => { navigate('/memberlogin') }
+  const goLeaderJoin = () => { navigate('/leaderjoin') }
 
   const handleLogin = () => {
     if (nameRef.current.value === "" || nameRef.current.value === undefined) {
@@ -42,8 +45,9 @@ const LeaderLogin = () => {
   };
 
   return (
-    <>
+    <div className="leaderLogin">
       <div className="input_body">
+        <h1>팀장 로그인</h1>
         <div className="inputBox">
           <input
             type="text"
@@ -77,6 +81,7 @@ const LeaderLogin = () => {
           <i></i>
         </div>
         <input
+          className="loginbtn"
           type="button"
           value="로그인"
           onClick={handleLogin}
@@ -86,10 +91,14 @@ const LeaderLogin = () => {
             }
           }}
         />
-        <Link to="/leaderjoin">팀장 등록</Link>
-        <Link to="/memberlogin">팀원 로그인</Link>
+        <button
+          className="loginbtn"
+          onClick={goMemberjoin}>팀원 로그인</button>
+        <button
+          className="loginbtn"
+          onClick={goLeaderJoin}>팀장 등록</button>
       </div>
-    </>
+    </div>
   );
 };
 

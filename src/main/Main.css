@@ -1,12 +1,20 @@
-body {
-    margin: 0px;
-    padding: 0px;
+.main_body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.mainTitle {
+    font-size: 120px;
+    margin-bottom: 30px;
 }
 
 .maintext {
-    position: absolute;
+    position: relative;
     width: 100%;
-    top: 500px;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -16,4 +24,8 @@ body {
     font-size: 30px;
     color: #ffffff;
     text-decoration-line: none;
+}
+
+.maintext input {
+    background: none;
 }

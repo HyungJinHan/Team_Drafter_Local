@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import LeaderLogin from "./Login/LeaderLogin";
 import LeaderJoin from "./Login/LeaderJoin";
 import Main from "./main/Main";
@@ -13,6 +13,8 @@ import Nivobar from "./chart/Nivobar";
 
 function App() {
   return (
+    //아무거나 입력 중
+
     <div className="mainBody">
       <div className="mainVideo">
         <video loop autoPlay muted>

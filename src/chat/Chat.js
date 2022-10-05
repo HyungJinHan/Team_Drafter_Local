@@ -11,66 +11,49 @@ const Chat = (classKey) => {
   const messageRef = useRef();
   const chatHour = new Date(Date.now()).getHours();
   const chatMinute = new Date(Date.now()).getMinutes();
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    if (
-      window.sessionStorage.getItem("name") !== "" &&
-      classKey.classKey !== ""
-    ) {
-      socket.emit("join_room", classKey.classKey);
-    }
-
-    socket.on("in user notice", (data) => {
-      console.log("입장 인삿말", data);
-      const notice = {
-        room: classKey.classKey,
-        type: data.type,
-        content: `${window.sessionStorage.getItem("name")}님이 들어오셨습니다.`,
-      };
-      setMessages((message) => [...message, notice]);
-    });
-
-    socket.on("disconnect", async (data) => {
-      console.log("outUser", data);
-    });
-
-    socket.on("out user notice", (data) => {
-      console.log("퇴장 인삿말", data);
-
-      const notice = {
-        room: classKey.classKey,
-        type: data.type,
-        content: `${window.sessionStorage.getItem("name")}님이 나가셨습니다.`,
-      };
-      setMessages((message) => [...message, notice]);
-    });
-  }, []);
+    if (window.sessionStorage.getItem('name') !== '' && classKey.classKey !== '') {
+      socket.emit('join_room', classKey.classKey);
+    };
+    // socket.on("in user notice", (data) => {
+    //   console.log("입장 인삿말", data);
+    //   const notice = {
+    //     room: classKey.classKey,
+    //     content: `${window.sessionStorage.getItem('name')}님이 들어오셨습니다.`,
+    //   };
+    //   setMessages((message) => [...message, notice]);
+    // });
+  }, [])
 
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setMessageList((list) => [...list, data]);
+    socket.on('receive_message', (data) => {
+      setMessageList(
+        (list) => [...list, data]
+      );
     });
-  }, []);
+  }, [socket]);
 
-  const sendMessage = async () => {
-    if (currentMessage !== "") {
-      const messageData = {
-        room: classKey.classKey,
-        author: window.sessionStorage.getItem("name"),
-        message: currentMessage,
-        time:
-          (chatHour < 10 ? `0${chatHour}` : chatHour) +
-          ":" +
-          (chatMinute < 10 ? `0${chatMinute}` : chatMinute),
-        type: "SYSTEM_USER_IN",
-        content: `${window.sessionStorage.getItem("name")}님이 들어오셨습니다.`,
-      };
-      await socket.emit("send_message", messageData);
-      setMessageList((list) => [...list, messageData]);
-      setCurrentMessage("");
-    }
-  };
+  const sendMessage =
+    async () => {
+      if (currentMessage !== '') {
+        const messageData = {
+          room: classKey.classKey,
+          author: window.sessionStorage.getItem('name'),
+          message: currentMessage,
+          time:
+            (chatHour < 10 ? `0${chatHour}` : chatHour) +
+            ':' +
+            (chatMinute < 10 ? `0${chatMinute}` : chatMinute),
+        };
+        await socket.emit('send_message', messageData);
+        setMessageList(
+          (list) => [...list, messageData]
+        );
+        setCurrentMessage('')
+      }
+    };
 
   var className = classKey.classKey;
   console.log(messages);
@@ -98,25 +81,10 @@ const Chat = (classKey) => {
   }
 
   return (
-    <div className="ChatMain">
-      <div className="chat-window">
-        <div className="chat-header">
-          {messageList &&
-            messageList.map((message) =>
-              message.type === "SYSTEM_USER_IN" ||
-              message.type === "SYSTEM_USER_OUT" ? (
-                <div key={window.sessionStorage.getItem("name")}>
-                  <div className="notice">
-                    {message.content}
-                    {console.log(message)}
-                  </div>
-                </div>
-              ) : null
-            )}
-          <p>
-            &lt; {className} &gt; 채팅 방 /{" "}
-            {window.sessionStorage.getItem("name")} 로그인 중
-          </p>
+    <div className='ChatMain'>
+      <div className='chat-window'>
+        <div className='chat-header'>
+          <p>&lt; {className} &gt; 채팅 방 / {window.sessionStorage.getItem('name')} 로그인 중</p>
         </div>
         <div className="chat-body">
           <ScrollToBottom className="message-container">

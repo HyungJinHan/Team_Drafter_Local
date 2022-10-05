@@ -13,6 +13,7 @@ import useStore from "../store/Store";
 
 const AuctionArticle = () => {
   const location = useLocation();
+  // console.log(location)
   const auctionCreateUrl = useNavigate();
   const classKey = location.pathname.substring(9, 20);
   console.log("path =>", classKey);
