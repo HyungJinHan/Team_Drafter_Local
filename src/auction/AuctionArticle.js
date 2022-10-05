@@ -147,7 +147,9 @@ const AuctionArticle = () => {
           <AuctionMy />
         </div>
       </div>
-      <Chat classKey={classKey} />
+      <div>
+        {/* <Chat classKey={classKey} /> */}
+      </div>
     </>
   );
 };
