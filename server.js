@@ -170,11 +170,20 @@ app.post("/memberlist", (req, res) => {
   });
 });
 
-app.post("/mylist", (req, res) => {
+app.post("/myleaderlist", (req, res) => {
   var LEADER_NAME = req.body.LEADER_NAME;
   const sqlQuery =
     "SELECT LEADER_NAME, LEADER_TEAM, LEADER_GRADE, LEADER_CLASS, LEADER_COIN FROM LEADER_TBL WHERE LEADER_NAME = ?;";
   db.query(sqlQuery, [LEADER_NAME], (err, result) => {
+    res.send(result);
+  });
+});
+
+app.post("/mymemberlist", (req, res) => {
+  var MEMBER_NAME = req.body.MEMBER_NAME;
+  const sqlQuery =
+    "SELECT MEMBER_NAME, MEMBER_CLASS, MEMBER_GACHI FROM MEMBER_TBL WHERE MEMBER_NAME = ?;";
+  db.query(sqlQuery, [MEMBER_NAME], (err, result) => {
     res.send(result);
   });
 });
