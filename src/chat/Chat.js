@@ -56,7 +56,6 @@ const Chat = (classKey) => {
     };
 
   var className = classKey.classKey;
-  console.log(messages);
 
   if (classKey.classKey === "App") {
     className = "App 특화";
@@ -94,7 +93,7 @@ const Chat = (classKey) => {
                   className="message"
                   id={
                     window.sessionStorage.getItem("name") ===
-                    messageContent.author
+                      messageContent.author
                       ? "you"
                       : "other"
                   }
