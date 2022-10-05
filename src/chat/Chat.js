@@ -1,14 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './Chat.css';
-import io from 'socket.io-client';
-import ScrollToBottom from 'react-scroll-to-bottom';
+import React, { useEffect, useRef, useState } from "react";
+import "./Chat.css";
+import io from "socket.io-client";
+import ScrollToBottom from "react-scroll-to-bottom";
 
-const socket = io.connect('http://localhost:3001')
+const socket = io.connect("http://localhost:3001");
 
-const Chat = (
-  classKey
-) => {
-  const [currentMessage, setCurrentMessage] = useState('');
+const Chat = (classKey) => {
+  const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const messageRef = useRef();
   const chatHour = new Date(Date.now()).getHours();
@@ -19,10 +17,8 @@ const Chat = (
     if (window.sessionStorage.getItem('name') !== '' && classKey.classKey !== '') {
       socket.emit('join_room', classKey.classKey);
     };
-
     // socket.on("in user notice", (data) => {
     //   console.log("입장 인삿말", data);
-
     //   const notice = {
     //     room: classKey.classKey,
     //     content: `${window.sessionStorage.getItem('name')}님이 들어오셨습니다.`,
@@ -59,31 +55,30 @@ const Chat = (
       }
     };
 
-  var className = classKey.classKey
+  var className = classKey.classKey;
+  console.log(messages);
 
   if (classKey.classKey === "App") {
-    className = 'App 특화'
+    className = "App 특화";
   } else if (classKey.classKey === "JSA") {
-    className = 'JS 특화 A'
+    className = "JS 특화 A";
   } else if (classKey.classKey === "JSB") {
-    className = 'JS 특화 B'
+    className = "JS 특화 B";
   } else if (classKey.classKey === "SprA") {
-    className = 'Spring 특화 A'
+    className = "Spring 특화 A";
   } else if (classKey.classKey === "SprB") {
-    className = 'Spring 특화 B'
+    className = "Spring 특화 B";
   } else if (classKey.classKey === "SAMUL") {
-    className = '사물지능'
+    className = "사물지능";
   } else if (classKey.classKey === "UNUH") {
-    className = '언어지능'
+    className = "언어지능";
   } else if (classKey.classKey === "SIGAK") {
-    className = '시각지능'
+    className = "시각지능";
   } else if (classKey.classKey === "CLDA") {
-    className = '클라우드 A'
+    className = "클라우드 A";
   } else if (classKey.classKey === "CLDB") {
-    className = '클라우드 B'
+    className = "클라우드 B";
   }
-
-  console.log(classKey.classKey)
 
   return (
     <div className='ChatMain'>
@@ -91,20 +86,26 @@ const Chat = (
         <div className='chat-header'>
           <p>&lt; {className} &gt; 채팅 방 / {window.sessionStorage.getItem('name')} 로그인 중</p>
         </div>
-        <div className='chat-body'>
-          <ScrollToBottom className='message-container'>
+        <div className="chat-body">
+          <ScrollToBottom className="message-container">
             {messageList.map((messageContent) => {
               return (
                 <div
-                  className='message'
-                  id={window.sessionStorage.getItem('name') === messageContent.author ? 'you' : 'other'}>
+                  className="message"
+                  id={
+                    window.sessionStorage.getItem("name") ===
+                    messageContent.author
+                      ? "you"
+                      : "other"
+                  }
+                >
                   <div>
-                    <div className='message-content'>
+                    <div className="message-content">
                       <p>{messageContent.message}</p>
                     </div>
-                    <div className='message-meta'>
-                      <p id='time'>{messageContent.time}</p>
-                      <p id='author'>{messageContent.author}</p>
+                    <div className="message-meta">
+                      <p id="time">{messageContent.time}</p>
+                      <p id="author">{messageContent.author}</p>
                     </div>
                   </div>
                 </div>
@@ -112,29 +113,25 @@ const Chat = (
             })}
           </ScrollToBottom>
         </div>
-        <div className='chat-footer'>
+        <div className="chat-footer">
           <input
-            type='text'
-            placeholder='Say Hi!'
+            type="text"
+            placeholder="Say Hi!"
             value={currentMessage}
             onChange={(e) => {
               setCurrentMessage(e.target.value);
             }}
             onKeyPress={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === "Enter") {
                 sendMessage();
-              };
+              }
             }}
             ref={messageRef}
           />
-          <button
-            onClick={sendMessage}
-          >
-            &#9658;
-          </button>
+          <button onClick={sendMessage}>&#9658;</button>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

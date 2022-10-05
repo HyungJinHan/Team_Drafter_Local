@@ -13,7 +13,8 @@ const LeaderJoin = () => {
 
   const navigate = useNavigate();
 
-  const handleMember = () => { //인풋벨류 검사 후, axios실행
+  const handleMember = () => {
+    //인풋벨류 검사 후, axios실행
     if (nameRef.current.value === "" || nameRef.current.value === undefined) {
       alert("아이디를 입력하세요.");
       nameRef.current.focus();
@@ -57,6 +58,13 @@ const LeaderJoin = () => {
         console.log("handleMember =>", res);
         if (res.data.affectedRows === 1) {
           alert("회원가입 성공!!!");
+          axios
+            .post("http://localhost:8008/leaderjoinresult", {
+              LEADER_NAME: nameRef.current.value,
+            })
+            .then((res) => {
+              console.log("123");
+            });
           navigate("/");
         } else {
           alert("회원가입 실패");
@@ -66,7 +74,6 @@ const LeaderJoin = () => {
         console.error(e);
       });
   };
-
 
   return (
     <>

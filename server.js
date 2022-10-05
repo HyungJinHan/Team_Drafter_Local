@@ -38,8 +38,8 @@ io.on("connection", (socket) => {
 
   socket.on("send_message", (data) => {
     console.log(data);
-    socket.to(data.room).emit('receive_message', data);
-  })
+    socket.to(data.room).emit("receive_message", data);
+  });
 
   socket.on('disconnect', () => {
     console.log('User Disconnected', socket.id);
@@ -225,6 +225,27 @@ app.post("/leadercategory", (req, res) => {
   db.query(sqlQuery, [LEADER_CLASS], (err, result) => {
     res.send(result);
   });
+});
+
+app.post("/resultchart", (req, res) => {
+  const sqlQuery =
+    "SELECT RESULT_LEADER,RESULT_MEMBER,RESULT_COIN FROM RESULT_TBL";
+  db.query(sqlQuery, (err, result) => {
+    res.send(result);
+  });
+});
+
+app.post("/leaderjoinresult", (req, res) => {
+  var i = 0;
+  var LEADER_NAME = req.body.LEADER_NAME;
+  const sqlQuery =
+    "INSERT INTO RESULT_TBL (RESULT_LEADER,RESULT_MEMBER,RESULT_COIN) VALUES (?,NULL,0);";
+  while (i < 5) {
+    db.query(sqlQuery, [LEADER_NAME], (err, result) => {
+      res.send(result);
+    });
+    i = i + 1;
+  }
 });
 
 server.listen(3001, () => {

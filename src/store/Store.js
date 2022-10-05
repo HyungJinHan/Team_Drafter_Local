@@ -5,8 +5,8 @@ import SecureStorage from "secure-web-storage";
 import { useEffect } from "react";
 
 const useStore = create(() => {
-  const leaderName = window.sessionStorage.getItem("leaderName");
-  const memberName = window.sessionStorage.getItem("memberName");
+  const leaderName = window.sessionStorage.getItem("leadername");
+  const memberName = window.sessionStorage.getItem("membername");
   if (leaderName !== null) {
     axios
       .post("http://localhost:8008/leaderinfo", {
@@ -29,7 +29,7 @@ const useStore = create(() => {
   if (memberName !== null) {
     axios
       .post("http://localhost:8008/memberinfo", {
-        memberName: memberName,
+        MEMBER_NAME: memberName,
       })
       .then((res) => {
         useStore.setState({

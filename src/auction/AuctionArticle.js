@@ -9,6 +9,7 @@ import AuctionMember from "./AuctionMember";
 import AuctionCreate from "./AuctionCreate";
 import { useNavigate } from "react-router-dom";
 import AuctionList from "./AuctionList";
+import useStore from "../store/Store";
 
 const AuctionArticle = () => {
   const location = useLocation();
@@ -16,6 +17,9 @@ const AuctionArticle = () => {
   const auctionCreateUrl = useNavigate();
   const classKey = location.pathname.substring(9, 20);
   console.log("path =>", classKey);
+
+  const { LEADER_CLASS } = useStore();
+  const { MEMBER_CLASS } = useStore();
 
   const [auctionList, setAuctionList] = useState([]);
   const [leaderList, setLeaderList] = useState([]);
@@ -92,6 +96,7 @@ const AuctionArticle = () => {
   };
 
   const leaders = leaderList.leaderList;
+  console.log(MEMBER_CLASS, auctionCreate.MEMBER_CLASS);
 
   useEffect(() => {
     memberGetList();
@@ -116,7 +121,11 @@ const AuctionArticle = () => {
           ))}
         </div> */}
         <div className="auctionArticlItem">
-          <input type="button" value="방생성" onClick={goToAuctionCreate} />
+          {MEMBER_CLASS === auctionCreate.MEMBER_CLASS ? (
+            <input type="button" value="방생성" onClick={goToAuctionCreate} />
+          ) : (
+            <div></div>
+          )}
           {auctioneerSearcher === false ? (
             <div>
               <div>등록된 방이 없다.</div>

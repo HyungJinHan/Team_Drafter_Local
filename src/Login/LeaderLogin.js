@@ -32,6 +32,7 @@ const LeaderLogin = () => {
       .then((res) => {
         if (res.data[0].cnt === 1) {
           window.sessionStorage.setItem("name", nameRef.current.value);
+          window.sessionStorage.setItem("leadername", nameRef.current.value);
           navigate("/main");
         } else {
           alert("로그인 실패");
@@ -54,13 +55,11 @@ const LeaderLogin = () => {
             required="required"
             ref={nameRef}
             autoComplete="off"
-            onKeyPress={
-              (e) => {
-                if (e.key === 'Enter') {
-                  handleLogin();
-                }
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                handleLogin();
               }
-            }
+            }}
           />
           <span>ID input</span>
           <i></i>
@@ -72,13 +71,11 @@ const LeaderLogin = () => {
             required="required"
             ref={pwRef}
             autoComplete="off"
-            onKeyPress={
-              (e) => {
-                if (e.key === 'Enter') {
-                  handleLogin();
-                }
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                handleLogin();
               }
-            }
+            }}
           />
           <span>PW input</span>
           <i></i>
@@ -88,13 +85,11 @@ const LeaderLogin = () => {
           type="button"
           value="로그인"
           onClick={handleLogin}
-          onKeyPress={
-            (e) => {
-              if (e.key === 'Enter') {
-                handleLogin();
-              }
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              handleLogin();
             }
-          }
+          }}
         />
         <button
           className="loginbtn"
