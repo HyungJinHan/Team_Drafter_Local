@@ -10,6 +10,7 @@ import "./App.css";
 import AuctionList from "./auction/AuctionArticle";
 import AuctionCreate from "./auction/AuctionCreate";
 import Nivobar from "./chart/Nivobar";
+import AuctionStart from "./auction/AuctionStart";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
             <Route path="/auction/create/UNUH" element={<AuctionCreate />} />
             <Route path="/auction/create/CLDA" element={<AuctionCreate />} />
             <Route path="/auction/create/CLDB" element={<AuctionCreate />} />
+            <Route path="/auction/gamestart" element={<AuctionStart />} />
             <Route path="/nivo" element={<Nivobar />} />
           </Routes>
         </div>

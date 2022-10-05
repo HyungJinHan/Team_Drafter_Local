@@ -257,6 +257,15 @@ app.post("/leaderjoinresult", (req, res) => {
   }
 });
 
+app.post("/iteminfo", (req, res) => {
+  var AUCTIONEER_INDEX = req.body.AUCTIONEER_INDEX;
+  const sqlQuery =
+    "SELECT AUCTIONEER_INDEX, AUCTIONEER_NAME, AUCTIONEER_CLASS, AUCTIONEER_APPEAL, AUCTIONEER_DATE, AUCTIONEER_TIMER, AUCTIONEER_GACHI FROM AUCTIONEER_TBL WHERE AUCTIONEER_INDEX = ?;";
+  db.query(sqlQuery, [AUCTIONEER_INDEX], (err, result) => {
+    res.send(result);
+  });
+});
+
 server.listen(3001, () => {
   console.log("Server Running");
 });
