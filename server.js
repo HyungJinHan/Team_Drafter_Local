@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
 
   socket.on("join_room", (data) => {
     socket.join(data);
-    console.log(`User With ID : ${socket.id} joined room : ${data}`)
+    console.log(`User With ID : ${socket.id} joined room : ${data}`);
   });
 
   // socket.on('in user notice', (data) => {
@@ -41,8 +41,8 @@ io.on("connection", (socket) => {
     socket.to(data.room).emit("receive_message", data);
   });
 
-  socket.on('disconnect', () => {
-    console.log('User Disconnected', socket.id);
+  socket.on("disconnect", () => {
+    console.log("User Disconnected", socket.id);
     // socket.broadcast.in(data.room).emit("out user notice", data);
   });
 });
@@ -242,7 +242,7 @@ app.post("/leaderjoinresult", (req, res) => {
     "INSERT INTO RESULT_TBL (RESULT_LEADER,RESULT_MEMBER,RESULT_COIN) VALUES (?,NULL,0);";
   while (i < 5) {
     db.query(sqlQuery, [LEADER_NAME], (err, result) => {
-      res.send(result);
+      console.log("gd");
     });
     i = i + 1;
   }

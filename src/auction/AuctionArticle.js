@@ -62,10 +62,10 @@ const AuctionArticle = () => {
   const auctionCreatefunc = () => {
     axios
       .post("http://localhost:8008/memberinfo", {
-        MEMBER_NAME: window.sessionStorage.getItem("name"),
+        MEMBER_NAME: window.sessionStorage.getItem("membername"),
       })
       .then((res) => {
-        setAuctionCreate(res.data[0]);
+        setAuctionCreate(res.data[0].MEMBER_CLASS);
       })
       .catch((e) => {
         console.log(e);
@@ -88,7 +88,7 @@ const AuctionArticle = () => {
   };
 
   const goToAuctionCreate = () => {
-    auctionCreateUrl(`/auction/create/${auctionCreate.MEMBER_CLASS}`, {
+    auctionCreateUrl(`/auction/create/${auctionCreate}`, {
       state: {
         classKey: classKey,
       },
@@ -96,7 +96,6 @@ const AuctionArticle = () => {
   };
 
   const leaders = leaderList.leaderList;
-  console.log(MEMBER_CLASS, auctionCreate.MEMBER_CLASS);
 
   useEffect(() => {
     memberGetList();
@@ -104,6 +103,7 @@ const AuctionArticle = () => {
     auctionCreatefunc();
     auctioneerSearch();
   }, []);
+  console.log("asdasdasd", auctionCreate);
   return (
     <>
       <div className="auctionArticleBody">
@@ -121,7 +121,7 @@ const AuctionArticle = () => {
           ))}
         </div> */}
         <div className="auctionArticlItem">
-          {MEMBER_CLASS === auctionCreate.MEMBER_CLASS ? (
+          {MEMBER_CLASS === auctionCreate ? (
             <input type="button" value="방생성" onClick={goToAuctionCreate} />
           ) : (
             <div></div>
