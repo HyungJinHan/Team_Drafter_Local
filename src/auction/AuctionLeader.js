@@ -1,6 +1,6 @@
 import React from "react";
 
-const AuctionLeader = ({
+const AuctionGameLeader = ({
   ld
 }) => {
   var className = ld.LEADER_CLASS
@@ -48,4 +48,4 @@ const AuctionLeader = ({
   );
 };
 
-export default AuctionLeader;
+export default AuctionGameLeader;
