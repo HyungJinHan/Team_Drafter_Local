@@ -36,19 +36,19 @@ const AuctionLeader = (itemClass) => {
           {leaders?.map((ld) => (
             <tr key={ld.LEADER_NAME}>
               <td>
-                {ld.LEADER_NAME}
+                Name : {ld.LEADER_NAME}
               </td>
               <td>
-                {ld.LEADER_TEAM}
+                Team : {ld.LEADER_TEAM}
               </td>
               <td>
-                {ld.LEADER_GRADE}
+                Grade : {ld.LEADER_GRADE}
               </td>
               <td>
-                {ld.LEADER_CLASS}
+                Class : {ld.LEADER_CLASS}
               </td>
               <td>
-                {ld.LEADER_COIN}
+                Coin : {ld.LEADER_COIN}
               </td>
             </tr>
           ))}

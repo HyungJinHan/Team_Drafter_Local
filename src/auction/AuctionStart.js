@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AuctionGameLeader from './AuctionGameLeader';
+import AuctionMy from './AuctionMy';
+import './AuctionStart.css'
+import AuctionStartButton from './AuctionStartButton';
 
 const AuctionStart = () => {
 
@@ -25,21 +28,28 @@ const AuctionStart = () => {
   useEffect(() => {
     getItemInfo();
   }, []);
+
   console.log("itemClass", itemInfo.AUCTIONEER_CLASS);
+
   return (
-    <div>
-      <div>
+    <div className='auctionStartBody'>
+      <div className='auctionStartDiv'>
         <AuctionGameLeader itemClass={itemClass} />
-        <br />
       </div>
-      <div>
+      <div className='auctionStartDiv'>
         인덱스 : {itemInfo.AUCTIONEER_INDEX} <br />
         아이템 이름 : {itemInfo.AUCTIONEER_NAME} <br />
         아이템 반 : {itemInfo.AUCTIONEER_CLASS} <br />
         아이템 어필 : {itemInfo.AUCTIONEER_APPEAL} <br />
         아이템 날짜 : {itemInfo.AUCTIONEER_DATE} <br />
         아이템 타이머 : {itemInfo.AUCTIONEER_TIMER} <br />
-        아이템 가치 : {itemInfo.AUCTIONEER_GACHI} <br />
+        아이템 가치 : {itemInfo.AUCTIONEER_GACHI}
+        <div>
+          <AuctionStartButton />
+        </div>
+      </div>
+      <div className='auctionStartDiv'>
+        <AuctionMy />
       </div>
     </div>
   );
