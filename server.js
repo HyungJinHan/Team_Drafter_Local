@@ -266,6 +266,35 @@ app.post("/iteminfo", (req, res) => {
   });
 });
 
+app.post("/getCoin", (req, res) => {
+  var LEADER_NAME = req.body.LEADER_NAME;
+  const sqlQuery =
+    "SELECT LEADER_COIN FROM LEADER_TBL WHERE LEADER_NAME = ?;";
+  db.query(sqlQuery, [LEADER_NAME], (err, result) => {
+    res.send(result);
+  });
+});
+
+app.post("/sendcoin", (req, res) => {
+  var LEADER_NAME = req.body.LEADER_NAME;
+  var LEADER_COIN = req.body.LEADER_COIN;
+  const sqlQuery =
+    "UPDATE LEADER_TBL SET LEADER_COIN = ? WHERE LEADER_NAME = ?;";
+  db.query(sqlQuery, [LEADER_COIN, LEADER_NAME], (err, result) => {
+    res.send(result);
+  });
+});
+
+app.post("/sendcoin", (req, res) => {
+  var LEADER_NAME = req.body.LEADER_NAME;
+  var LEADER_COIN = req.body.LEADER_COIN;
+  const sqlQuery =
+    "UPDATE LEADER_TBL SET LEADER_COIN = ? WHERE LEADER_NAME = ?;";
+  db.query(sqlQuery, [LEADER_COIN, LEADER_NAME], (err, result) => {
+    res.send(result);
+  });
+});
+
 server.listen(3001, () => {
   console.log("Server Running");
 });
