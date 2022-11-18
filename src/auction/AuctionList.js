@@ -80,32 +80,27 @@ const AuctionList = ({ auc }) => {
           </a>
           <br />
           <span>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <u>모집 완료!! 곧 배달됩니다!!</u>
           </span>
           <br />
-          <br />
-          <br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성일 :{" "}
+          작성일 :{" "}
           {auc.AUCTIONEER_date}
           <br />
         </div>
         <div>
           <button id={auc.AUCTIONEER_INDEX} onClick={handleConfirm}>
-            낙<br />찰
-            <br />
-            확<br />정
+            낙찰확정
           </button>
         </div>
-      </div>
+      </div >
     );
   } else
     return (
       <div>
         <div
           id={auc.AUCTIONEER_INDEX}
-          // onClick={handledetail}
-          // 해당 경매 방으로 들어가는 이벤트
+        // onClick={handledetail}
+        // 해당 경매 방으로 들어가는 이벤트
         >
           <a id={auc.AUCTIONEER_INDEX}>
             {auc.AUCTIONEER_NAME} 가치:{auc.AUCTIONEER_GACHI}
@@ -130,7 +125,7 @@ const AuctionList = ({ auc }) => {
             value="삭제"
             id={auc.AUCTIONEER_INDEX}
             onClick={handleDelete}
-            // 해당 경매 방 삭제
+          // 해당 경매 방 삭제
           />
         </div>
       </div>

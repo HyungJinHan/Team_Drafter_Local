@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './AuctionGameLeader.css';
 
 const AuctionLeader = (itemClass) => {
   const aClass = itemClass.itemClass;
@@ -34,7 +35,7 @@ const AuctionLeader = (itemClass) => {
       <table>
         <tbody>
           {leaders?.map((ld) => (
-            <tr key={ld.LEADER_NAME}>
+            <tr key={ld.LEADER_NAME} className="GameLeaderTr">
               <td>
                 Name : {ld.LEADER_NAME}
               </td>

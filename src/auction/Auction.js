@@ -9,15 +9,15 @@ const Auction = () => {
 
   return (
     <>
+      <div className="AuctionMy">
+        <AuctionMy />
+      </div>
       <div className="AuctionBody">
         <div className="AuctionItem">
           <LeaderCategory />
         </div>
         <div className="AuctionItem">
           <AuctionClassSelect />
-        </div>
-        <div className="AuctionItem">
-          <AuctionMy />
         </div>
       </div>
     </>

@@ -31,6 +31,7 @@ const MemberLogin = () => {
       })
       .then((res) => {
         if (res.data[0].cnt === 1) {
+          window.sessionStorage.clear();
           window.sessionStorage.setItem("name", nameRef.current.value);
           window.sessionStorage.setItem("membername", nameRef.current.value);
           navigate("/main");

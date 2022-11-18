@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import "./LeaderCategory.css";
 
 const LeaderCategory = () => {
 
@@ -39,19 +40,19 @@ const LeaderCategory = () => {
   }, [classAdd]);
   return (
     <div>
-      <table>
+      <table border={1} width="100%">
         <tbody>
           <tr>
-            <td>
+            <td width="20%">
               <button
                 className={"leaderCategoryBtn " + (classAdd === "App" ? "" : "On")}
                 onClick={handleClick}
                 value="App"
               >
-                App 특화 반 {classAdd === "App" ? "▽" : "△"}
+                APP 특화 반 {classAdd === "App" ? "▽" : "△"}
               </button>
             </td>
-            <td>
+            <td width="20%">
               <button
                 className={"leaderCategoryBtn " + (classAdd === "JSA" ? "On" : "")}
                 onClick={handleClick}
@@ -60,7 +61,7 @@ const LeaderCategory = () => {
                 JS 특화 A 반 {classAdd === "JSA" ? "▽" : "△"}
               </button>
             </td>
-            <td>
+            <td width="20%">
               <button
                 className={"leaderCategoryBtn " + (classAdd === "JSB" ? "On" : "")}
                 onClick={handleClick}
@@ -69,27 +70,27 @@ const LeaderCategory = () => {
                 JS 특화 B 반 {classAdd === "JSB" ? "▽" : "△"}
               </button>
             </td>
-            <td>
+            <td width="20%">
               <button
                 className={"leaderCategoryBtn " + (classAdd === "SprA" ? "On" : "")}
                 onClick={handleClick}
                 value="SprA"
               >
-                Spring 특화 A 반 {classAdd === "SprA" ? "▽" : "△"}
+                SPRING A 반 {classAdd === "SprA" ? "▽" : "△"}
               </button>
             </td>
-            <td>
+            <td width="20%">
               <button
                 className={"leaderCategoryBtn " + (classAdd === "SprB" ? "On" : "")}
                 onClick={handleClick}
                 value="SprB"
               >
-                Spring 특화 B 반 {classAdd === "SprB" ? "▽" : "△"}
+                SPRING B 반 {classAdd === "SprB" ? "▽" : "△"}
               </button>
             </td>
           </tr>
           <tr>
-            <td>
+            <td width="20%">
               <button
                 className={"leaderCategoryBtn " + (classAdd === "SAMUL" ? "On" : "")}
                 onClick={handleClick}
@@ -98,7 +99,7 @@ const LeaderCategory = () => {
                 사물지능 반 {classAdd === "SAMUL" ? "▽" : "△"}
               </button>
             </td>
-            <td>
+            <td width="20%">
               <button
                 className={"leaderCategoryBtn " + (classAdd === "SIGAK" ? "On" : "")}
                 onClick={handleClick}
@@ -107,7 +108,7 @@ const LeaderCategory = () => {
                 시각지능 반 {classAdd === "SIGAK" ? "▽" : "△"}
               </button>
             </td>
-            <td>
+            <td width="20%">
               <button
                 className={"leaderCategoryBtn " + (classAdd === "UNUH" ? "On" : "")}
                 onClick={handleClick}
@@ -116,7 +117,7 @@ const LeaderCategory = () => {
                 언어지능 반 {classAdd === "UNUH" ? "▽" : "△"}
               </button>
             </td>
-            <td>
+            <td width="20%">
               <button
                 className={"leaderCategoryBtn " + (classAdd === "CLDA" ? "On" : "")}
                 onClick={handleClick}
@@ -125,7 +126,7 @@ const LeaderCategory = () => {
                 클라우드 A 반 {classAdd === "CLDA" ? "▽" : "△"}
               </button>
             </td>
-            <td>
+            <td width="20%">
               <button
                 className={"leaderCategoryBtn " + (classAdd === "CLDB" ? "On" : "")}
                 onClick={handleClick}
@@ -136,27 +137,27 @@ const LeaderCategory = () => {
             </td>
           </tr>
           {leaders?.map((ld) => (
-            <tr key={ld.LEADER_NAME}>
-              <td>
+            <tr key={ld.LEADER_NAME} align='center' className="leaderCategoryTr">
+              <td width="20%">
                 {ld.LEADER_NAME}
               </td>
-              <td>
+              <td width="20%">
                 {ld.LEADER_TEAM}
               </td>
-              <td>
-                {ld.LEADER_GEADE}
+              <td width="20%">
+                {ld.LEADER_GRADE}
               </td>
-              <td>
+              <td width="20%">
                 {ld.LEADER_CLASS}
               </td>
-              <td>
+              <td width="20%">
                 {ld.LEADER_COIN}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+    </div >
   );
 };
 

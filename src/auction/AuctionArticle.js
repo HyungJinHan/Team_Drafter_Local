@@ -106,8 +106,11 @@ const AuctionArticle = () => {
   console.log("asdasdasd", auctionCreate);
   return (
     <>
+      <div className="auctionArticlItem">
+        <AuctionMy />
+      </div>
       <div className="auctionArticleBody">
-        <div className="auctionArticlItem">
+        <div className="auctionArticleItem">
           {leaders?.map((ld) => (
             <AuctionLeader classkey={classKey} ld={ld} key={ld.LEADER_NAME} />
           ))}
@@ -120,7 +123,7 @@ const AuctionArticle = () => {
             />
           ))}
         </div> */}
-        <div className="auctionArticlItem">
+        <div className="auctionArticleItem">
           {MEMBER_CLASS === auctionCreate ? (
             <input type="button" value="방생성" onClick={goToAuctionCreate} />
           ) : (
@@ -131,7 +134,7 @@ const AuctionArticle = () => {
               <div>등록된 방이 없다.</div>
             </div>
           ) : (
-            <div className="auctionArticlItem">
+            <div className="auctionArticleItem">
               {auctioneerData?.map((auc) => (
                 <div>
                   <AuctionList auc={auc} />
@@ -142,9 +145,6 @@ const AuctionArticle = () => {
               ))}
             </div>
           )}
-        </div>
-        <div className="auctionArticlItem">
-          <AuctionMy />
         </div>
       </div>
       <div>

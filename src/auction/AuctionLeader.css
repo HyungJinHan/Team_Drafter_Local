@@ -1,0 +1,13 @@
+.AuctionLeaderBody {
+  overflow: hidden;
+}
+
+.AuctionLeader {
+  font-size: 25px;
+}
+
+.AuctionLeaderSpan {
+  color: black;
+  font-size: 28px;
+  padding: 14px;
+}

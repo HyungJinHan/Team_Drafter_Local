@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const AuctionCreate = () => {
   const location = useLocation();
-  console.log(location.state.classKey);
+  console.log('location.state.classKey=> ', location.state.classKey);
 
   useEffect(() => {
     auctionCreatefunc();

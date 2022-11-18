@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./AuctionMy.css";
 
 const AuctionMy = () => {
   const leaderName = window.sessionStorage.getItem("leadername");
@@ -42,7 +43,7 @@ const AuctionMy = () => {
   if (leaderName !== null) {
     return (
       <div>
-        <div>
+        <div className="AuctionMyDiv">
           <span>이름 {leaderList.LEADER_NAME}&nbsp;</span>
           <span>팀이름 {leaderList.LEADER_TEAM}&nbsp;</span>
           <span>내 등급 {leaderList.LEADER_GRADE}&nbsp;</span>
@@ -55,7 +56,7 @@ const AuctionMy = () => {
   else if (memberName !== null) {
     return (
       <div>
-        <div>
+        <div className="AuctionMyDiv">
           <span>이름 {memberList.MEMBER_NAME}&nbsp;</span>
           <span>내 반 {memberList.MEMBER_CLASS}&nbsp;</span>
           <span>내 가치 {memberList.MEMBER_GACHI}&nbsp;</span>

@@ -260,7 +260,7 @@ app.post("/leaderjoinresult", (req, res) => {
 app.post("/iteminfo", (req, res) => {
   var AUCTIONEER_INDEX = req.body.AUCTIONEER_INDEX;
   const sqlQuery =
-    "SELECT AUCTIONEER_INDEX, AUCTIONEER_NAME, AUCTIONEER_CLASS, AUCTIONEER_APPEAL, AUCTIONEER_DATE, AUCTIONEER_TIMER, AUCTIONEER_GACHI FROM AUCTIONEER_TBL WHERE AUCTIONEER_INDEX = ?;";
+    "SELECT AUCTIONEER_INDEX, AUCTIONEER_NAME, AUCTIONEER_CLASS, AUCTIONEER_APPEAL, AUCTIONEER_DATE, AUCTIONEER_TIMER, AUCTIONEER_GACHI, AUCTIONEER_COIN FROM AUCTIONEER_TBL WHERE AUCTIONEER_INDEX = ?;";
   db.query(sqlQuery, [AUCTIONEER_INDEX], (err, result) => {
     res.send(result);
   });
@@ -285,12 +285,12 @@ app.post("/sendcoin", (req, res) => {
   });
 });
 
-app.post("/sendcoin", (req, res) => {
-  var LEADER_NAME = req.body.LEADER_NAME;
-  var LEADER_COIN = req.body.LEADER_COIN;
+app.post("/updateitemcoin", (req, res) => {
+  var AUCTIONEER_NAME = req.body.AUCTIONEER_NAME;
+  var AUCTIONEER_COIN = req.body.AUCTIONEER_COIN;
   const sqlQuery =
-    "UPDATE LEADER_TBL SET LEADER_COIN = ? WHERE LEADER_NAME = ?;";
-  db.query(sqlQuery, [LEADER_COIN, LEADER_NAME], (err, result) => {
+    "UPDATE AUCTIONEER_TBL SET AUCTIONEER_COIN = ? WHERE AUCTIONEER_NAME = ?;";
+  db.query(sqlQuery, [AUCTIONEER_COIN, AUCTIONEER_NAME], (err, result) => {
     res.send(result);
   });
 });

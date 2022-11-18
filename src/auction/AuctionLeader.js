@@ -1,4 +1,5 @@
 import React from "react";
+import './AuctionLeader.css';
 
 const AuctionGameLeader = ({
   ld
@@ -28,21 +29,23 @@ const AuctionGameLeader = ({
   }
 
   return (
-    <div>
-      <div>
-        {ld.LEADER_NAME}
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        {ld.LEADER_TEAM}
-        &nbsp;팀
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        {ld.LEADER_GRADE}
-        &nbsp;등급
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        {className}
-        &nbsp;반
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        {ld.LEADER_COIN}
-        &nbsp;Coin
+    <div className="AuctionLeaderBody">
+      <div className="AuctionLeader">
+        <span className="AuctionLeaderSpan">
+          {ld.LEADER_NAME} |
+        </span>
+        <span className="AuctionLeaderSpan">
+          {ld.LEADER_TEAM} 팀 |
+        </span>
+        <span className="AuctionLeaderSpan">
+          {ld.LEADER_GRADE} 등급 |
+        </span>
+        <span className="AuctionLeaderSpan">
+          {className} 반 |
+        </span>
+        <span className="AuctionLeaderSpan">
+          {ld.LEADER_COIN} Coin
+        </span>
       </div>
     </div>
   );
